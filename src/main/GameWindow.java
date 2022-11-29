@@ -8,5 +8,6 @@ public class GameWindow {
         jframe = new JFrame();
         jframe.setSize(400,400);
         jframe.setVisible(true);
+        //
     }
 }
