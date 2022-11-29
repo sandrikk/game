@@ -5,5 +5,6 @@ public class Game {
     public Game() {
 
         gameWindow = new GameWindow();
+        //blablabla
     }
 }
