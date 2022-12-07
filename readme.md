@@ -21,4 +21,6 @@
 
 6. And now you see just 'Create pull request' which means that you can create request for merging your branch into the main branch. In the beggining this we will do probably just in the library on our sessions so you can ignore that for now and just repeat everything from point number 3 - open it in IntelliJ and code :))
 
+![Capture6](https://user-images.githubusercontent.com/69211090/206168593-0882e76d-aa12-4747-a625-4e11c3ee160b.PNG)
+
 
