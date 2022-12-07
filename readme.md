@@ -11,11 +11,11 @@
 
 ![Capture3](https://user-images.githubusercontent.com/69211090/206166336-275c5807-bd56-4b00-a97f-7e7c885223fa.PNG)
 
-4. After your code session commit your changes with descripton what you add, delete or change in the code
+4. After your code session, commit your changes with descripton what you add, delete or change in the code
 
 ![Capture4](https://user-images.githubusercontent.com/69211090/206166743-0fcdc26a-48d1-47ea-82ca-48db486e6ccf.PNG)
 
-5. Push origin means that you apload your commits (changes) to github, so do it
+5. Push origin means that you upload your commits (changes) to github, so do it
 
 ![Capture5](https://user-images.githubusercontent.com/69211090/206167288-fbdb0e22-78ab-4ade-8f3d-6304990b37cb.PNG)
 
