@@ -15,4 +15,10 @@
 
 ![Capture4](https://user-images.githubusercontent.com/69211090/206166743-0fcdc26a-48d1-47ea-82ca-48db486e6ccf.PNG)
 
+5. Push origin means that you apload your commits (changes) to github, so do it
+
+![Capture5](https://user-images.githubusercontent.com/69211090/206167288-fbdb0e22-78ab-4ade-8f3d-6304990b37cb.PNG)
+
+6. And now you see just 'Create pull request' which means that you can create request for merging your branch into the main branch. In the beggining this we will do probably just in the library on our sessions so you can ignore that for now and just repeat everything from point number 3 - open it in IntelliJ and code :))
+
 
