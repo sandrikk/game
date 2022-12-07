@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
     private Mouseinputs mouseInputs;
-    private int xDelta = 0, yDelta = 0;
+    private int xDelta = 100, yDelta = 100;
     public GamePanel() {
-        mouseInputs = new Mouseinputs();
+        mouseInputs = new Mouseinputs(this);
         addKeyListener(new Keyboardinputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
@@ -28,10 +28,16 @@ public class GamePanel extends JPanel {
         repaint();
     }
 
+    public void setRectPos(int x, int y) {
+        this.xDelta = x;
+        this.yDelta = y;
+        repaint();
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.fillRect(100+xDelta,100+yDelta,50,100);
+        g.fillRect(xDelta,yDelta,50,100);
 
     }
 }
