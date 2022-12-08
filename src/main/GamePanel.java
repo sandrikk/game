@@ -6,7 +6,11 @@ import inputs.Mouseinputs;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
@@ -15,16 +19,37 @@ public class GamePanel extends JPanel {
     private float xDir=1f, yDir=1f;
     private int frames =0;
     private long lastCheck =0;
-    private Color color= new Color(55,77,99);
-    private Random random;
+
+    private BufferedImage img;
+
 
     public GamePanel() {
-
-        random=new Random();
         mouseInputs = new Mouseinputs(this);
+        importImg();
+        setPanelSize();
         addKeyListener(new Keyboardinputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
+    }
+
+    private void importImg() {
+            InputStream istream = getClass().getResourceAsStream("/character1.png");
+            try {
+                img = ImageIO.read(istream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
+    private void setPanelSize() {
+        Dimension size = new Dimension(1280,800);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setPreferredSize(size);
+
     }
 
     public void changeXDelta(int value) {
@@ -36,38 +61,22 @@ public class GamePanel extends JPanel {
         this.yDelta += value;
 
     }
-
-    public void setRectPos(int x, int y) {
-        this.xDelta = x;
-        this.yDelta = y;
-
-    }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        updateRectangle();
 
-        g.setColor(color);
-        g.fillRect((int)xDelta,(int)yDelta,50,100);
+        g.drawImage(img,(int) xDelta,(int) yDelta,120,200,null);
 
-    }
-    private void updateRectangle() {
-        xDelta += xDir;
-        if ( xDelta>400 || xDelta<0) {
-            xDir *= -1;
-            color = getRndColor();
-        }
-        yDelta += yDir;
-        if (yDelta>400 || yDelta<0)
-            yDir*=-1;
-        color= getRndColor();
 
     }
-    private Color getRndColor() {
-        int r= random.nextInt(255);
-        int g=random.nextInt(255);
-        int b=random.nextInt(255);
-        return new Color(r,g,b);
-}
+
+    public void setRectPos(int x,int y) {
+        this.xDelta = x;
+        this.yDelta = y;
+    }
+
+
+
+
+
 }
 
