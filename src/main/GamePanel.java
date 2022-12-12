@@ -40,13 +40,15 @@ public class GamePanel extends JPanel {
     private void loadAnimations() {
         animations = new BufferedImage[5];
 
+
         for (int i = 0; i < animations.length; i++) {
-            animations[i] = img.getSubimage(i*64, 0,64,40);
+            animations[i] = img.getSubimage(i*64, 0,64,80);
         }
+
     }
 
     private void importImg() {
-            InputStream istream = getClass().getResourceAsStream("/characters.png");
+            InputStream istream = getClass().getResourceAsStream("/characters-bigger.png");
             try {
                 img = ImageIO.read(istream);
             } catch (IOException e) {
