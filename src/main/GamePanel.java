@@ -87,6 +87,10 @@ public class GamePanel extends JPanel {
         }
 
     }
+    public void updateGame() {
+        updateAnimationTick();
+
+    }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
