@@ -24,27 +24,48 @@ public class Game implements Runnable{
     public void run() {
 
         double timePerFrame = 1000000000.0/FPS_Set;
-        long lastFrame= System.nanoTime();
-        long now = System.nanoTime();
+        double timePerUpdate= 1000000000.0/UPS_Set;
+
+        long previousTime = System.nanoTime();
 
         int frames= 0;
+        int updates=0;
         long lastCheck= System.currentTimeMillis();
+
+        double indexUpdate=0;
+        double indexFrame=0;
 
         while (true) {
 
-            now= System.nanoTime();
-            if(now-lastFrame>= timePerFrame) {
+            long currentTime= System.nanoTime();
 
-                gamePanel.repaint();
-                lastFrame=now;
-                frames++;
+            indexUpdate += (currentTime-previousTime) /timePerUpdate;
+            indexFrame +=  (currentTime-previousTime) /timePerFrame;
+            previousTime = currentTime;
+
+            if (indexUpdate>=1) {
+               // update();
+                updates++;
+                indexUpdate--;
             }
+            if (indexFrame>=1) {
+                gamePanel.repaint();
+                frames++;
+                indexFrame--;
+            }
+//            if(now-lastFrame>= timePerFrame) {
+//
+//                gamePanel.repaint();
+//                lastFrame=now;
+//                frames++;
+//            }
 
 
             if(System.currentTimeMillis()- lastCheck >= 1000) {
                 lastCheck= System.currentTimeMillis();
-                System.out.println("FPS: " + frames);
+                System.out.println("FPS: " + frames + "| UPS:" + updates);
                 frames= 0;
+                updates=0;
             }
 
 
