@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import static utilz.Constants.PlayerConstants.*;
 
 public class GamePanel extends JPanel {
     private Mouseinputs mouseInputs;
@@ -21,8 +22,9 @@ public class GamePanel extends JPanel {
     private long lastCheck =0;
 
     private BufferedImage img;
-    private BufferedImage[] animations;
+    private BufferedImage[][] animations;
     private int aniTick, aniIndex, aniSpeed = 15;
+    private int playerAction = IDLE;
 
 
     public GamePanel() {
@@ -36,23 +38,25 @@ public class GamePanel extends JPanel {
     }
 
     private void loadAnimations() {
-        animations = new BufferedImage[5];
+        animations = new BufferedImage[4][4];
 
+        for (int j = 0; j < animations.length; j++) {
+            for (int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = img.getSubimage(i * 64, j * 80, 64, 80);
+            }
 
-        for (int i = 0; i < animations.length; i++) {
-            animations[i] = img.getSubimage(i*64, 0,64,80);
         }
-
     }
 
-    private void importImg() {
-            InputStream istream = getClass().getResourceAsStream("/characters-bigger.png");
-            try {
-                img = ImageIO.read(istream);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    private void importImg () {
+        InputStream istream = getClass().getResourceAsStream("/characters-bigger.png");
+        try {
+            img = ImageIO.read(istream);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
 
 
 
@@ -80,7 +84,7 @@ public class GamePanel extends JPanel {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= animations.length) {
+            if (aniIndex >= 4) {
                 aniIndex = 0;
             }
         }
@@ -91,7 +95,7 @@ public class GamePanel extends JPanel {
 
         updateAnimationTick();
 
-        g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,80,null);
+        g.drawImage(animations[0][aniIndex], (int) xDelta,(int) yDelta,120,80,null);
 
 
     }
