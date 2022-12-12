@@ -5,6 +5,7 @@ public class Game implements Runnable{
     private GamePanel gamePanel;
     private Thread gameThread;
     private final int FPS_Set = 133;
+    private final int UPS_Set= 210;
 
     public Game() {
         gamePanel=new GamePanel();
