@@ -21,6 +21,8 @@ public class GamePanel extends JPanel {
     private long lastCheck =0;
 
     private BufferedImage img;
+
+
     private BufferedImage[] animations;
     private int aniTick, aniIndex, aniSpeed = 15;
 
