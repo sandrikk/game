@@ -39,7 +39,7 @@ public class GamePanel extends JPanel {
         animations = new BufferedImage[5];
 
         for (int i = 0; i < animations.length; i++) {
-            animations[i] = img.getSubimage(i*64, 0,64,100);
+            animations[i] = img.getSubimage(i*64, 0,64,40);
         }
     }
 
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel {
 
         updateAnimationTick();
 
-        g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,200,null);
+        g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,80,null);
 
 
     }
