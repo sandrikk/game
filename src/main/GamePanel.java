@@ -13,6 +13,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import static utilz.Constants.PlayerConstants.*;
+import static utilz.Constants.Directions.*;
 
 public class GamePanel extends JPanel {
     private Mouseinputs mouseInputs;
@@ -25,6 +26,8 @@ public class GamePanel extends JPanel {
     private BufferedImage[][] animations;
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
+    private int playerDir = -1;
+    private boolean moving = false;
 
 
     public GamePanel() {
@@ -38,18 +41,18 @@ public class GamePanel extends JPanel {
     }
 
     private void loadAnimations() {
-        animations = new BufferedImage[4][4];
+        animations = new BufferedImage[5][5];
 
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
-                animations[j][i] = img.getSubimage(i * 64, j * 80, 64, 80);
+                animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
             }
 
         }
     }
 
     private void importImg () {
-        InputStream istream = getClass().getResourceAsStream("/characters-bigger.png");
+        InputStream istream = getClass().getResourceAsStream("/characters8.png");
         try {
             img = ImageIO.read(istream);
         } catch (IOException e) {
@@ -84,25 +87,65 @@ public class GamePanel extends JPanel {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= 4) {
+            if (aniIndex >= GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
             }
         }
 
     }
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
 
-        updateAnimationTick();
-
-        g.drawImage(animations[0][aniIndex], (int) xDelta,(int) yDelta,120,80,null);
-
-
+    public void setAnimation() {
+        if (moving) {
+            playerAction = RUNNING;
+        } else {
+            playerAction = IDLE;
+        }
     }
+
+
+
 
     public void setRectPos(int x,int y) {
         this.xDelta = x;
         this.yDelta = y;
+    }
+
+    public void setDirection(int direction) {
+        this.playerDir = direction;
+        moving = true;
+    }
+
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
+    private void updatePos() {
+        if (moving) {
+            switch (playerDir) {
+                case LEFT:
+                    xDelta -= 5;
+                    break;
+                case UP:
+                    yDelta -= 5;
+                    break;
+                case RIGHT:
+                    xDelta += 5;
+                    break;
+                case DOWN:
+                    yDelta += 5;
+                    break;
+            }
+        }
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        updateAnimationTick();
+        setAnimation();
+        updatePos();
+        g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
+
     }
 
 
