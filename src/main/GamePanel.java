@@ -23,7 +23,9 @@ public class GamePanel extends JPanel {
     private long lastCheck =0;
 
     private BufferedImage img;
+
     private BufferedImage[][] animations;
+
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
     private int playerDir = -1;
@@ -58,7 +60,7 @@ public class GamePanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+
 
     private void setPanelSize() {
         Dimension size = new Dimension(1280,800);
@@ -89,6 +91,18 @@ public class GamePanel extends JPanel {
         }
 
     }
+
+    public void updateGame() {
+        updateAnimationTick();
+
+    }
+ //   public void paintComponent(Graphics g) {
+ //       super.paintComponent(g);
+//
+ //       updateAnimationTick();
+
+  //      g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,80,null);
+
 
     public void setAnimation() {
         if (moving) {
