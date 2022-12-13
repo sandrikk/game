@@ -60,10 +60,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-
-
-
-
     private void setPanelSize() {
         Dimension size = new Dimension(1280,800);
         setMinimumSize(size);
@@ -101,9 +97,6 @@ public class GamePanel extends JPanel {
             playerAction = IDLE;
         }
     }
-
-
-
 
     public void setRectPos(int x,int y) {
         this.xDelta = x;
@@ -147,9 +140,6 @@ public class GamePanel extends JPanel {
         g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
 
     }
-
-
-
 
 
 }
