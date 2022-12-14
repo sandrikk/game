@@ -102,6 +102,14 @@ public class Player extends Entity {
         }
 
     }
+
+    public void resetDirectionsBooleans() {
+        right=false;
+        left=false;
+        down=false;
+        up=false;
+    }
+
     public boolean isLeft() {
         return left;
     }

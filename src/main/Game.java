@@ -82,6 +82,9 @@ public void render(Graphics g) {
 
         }
     }
+    public void windowFocusLost() {
+        player.resetDirectionsBooleans();
+    }
     public Player getPlayer() {
         return player;
     }
