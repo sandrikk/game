@@ -4,13 +4,10 @@ import inputs.Keyboardinputs;
 import inputs.Mouseinputs;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import static utilz.Constants.PlayerConstants.*;
@@ -33,10 +30,11 @@ public class GamePanel extends JPanel {
     private int playerDir = -1;
     private boolean moving = false;
     private int count = 300;
+private Game game;
 
-
-    public GamePanel() {
+    public GamePanel(Game game) {
         mouseInputs = new Mouseinputs(this);
+        this.game=game;
         importImg();
         loadAnimations();
         setPanelSize();
@@ -97,7 +95,7 @@ public class GamePanel extends JPanel {
     }
 
     public void updateGame() {
-        updateAnimationTick();
+
 
     }
  //   public void paintComponent(Graphics g) {
@@ -152,8 +150,10 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        game.render(g);
 
-        g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
+
+     //   g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
 
         long currentTime = new Date().getTime()/1000;
         g.setFont(new  Font("TimesRoman",Font.PLAIN,40));
@@ -168,7 +168,9 @@ public class GamePanel extends JPanel {
         updatePos();
 
     }
-
+public Game getGame() {
+        return game;
+}
 
 }
 
