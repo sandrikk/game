@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel {
     private long lastCheck =0;
 
     private BufferedImage img;
+    private long lastTime = new Date().getTime()/1000;
 
     private BufferedImage[][] animations;
 
@@ -30,6 +32,7 @@ public class GamePanel extends JPanel {
     private int playerAction = IDLE;
     private int playerDir = -1;
     private boolean moving = false;
+    private int count = 300;
 
 
     public GamePanel() {
@@ -149,10 +152,20 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+
+        g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
+
+        long currentTime = new Date().getTime()/1000;
+        g.setFont(new  Font("TimesRoman",Font.PLAIN,40));
+        if (currentTime - lastTime >= 1){
+            count--;
+            this.lastTime = new Date().getTime()/1000;
+        }
+        g.drawString(String.valueOf(count), 1200, 50);
+
         updateAnimationTick();
         setAnimation();
         updatePos();
-        g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
 
     }
 
