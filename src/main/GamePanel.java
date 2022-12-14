@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import static main.Game.game_height;
+import static main.Game.game_width;
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.Constants.Directions.*;
 
@@ -65,10 +68,11 @@ private Game game;
 
 
     private void setPanelSize() {
-        Dimension size = new Dimension(1280,800);
+        Dimension size = new Dimension(game_width,game_height);
         setMinimumSize(size);
         setMaximumSize(size);
         setPreferredSize(size);
+
 
     }
 
@@ -161,7 +165,7 @@ private Game game;
             count--;
             this.lastTime = new Date().getTime()/1000;
         }
-        g.drawString(String.valueOf(count), 1200, 50);
+        g.drawString(String.valueOf(count), 1150, 50);
 
         updateAnimationTick();
         setAnimation();

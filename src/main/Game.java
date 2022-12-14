@@ -12,6 +12,14 @@ public class Game implements Runnable{
     private final int UPS_Set= 210;
     private Player player;
 
+    public final static int default_size_tiles = 32;
+    public final static float scaling = 1.5f;
+    public final static int tiles_in_width = 26;
+    public final static int tiles_in_height = 14;
+    public final static int tiles_size = (int) (default_size_tiles * scaling);
+    public final static int game_width = tiles_size * tiles_in_width;
+    public final static int game_height = tiles_size * tiles_in_height;
+
     public Game() {
         initClasses();
         gamePanel=new GamePanel(this);
