@@ -19,7 +19,7 @@ public class Player extends Entity {
     private int playerAction = IDLE;
     private boolean moving = false;
     private boolean left, up, right, down;
-    private float playerSpeed= 2.0f;
+    private float playerSpeed= 1.5f;
 
 
 

@@ -29,8 +29,6 @@ public class Game implements Runnable{
         gameWindow= new GameWindow(gamePanel);
         gamePanel.requestFocus();
         startGameLoop();
-
-
     }
 
     private void initClasses() {
@@ -44,12 +42,14 @@ public class Game implements Runnable{
     }
 public void update() {
       //  gamePanel.updateGame();
-    player.update();
     levelHandler.update();
+    player.update();
+
 }
 public void render(Graphics g) {
+    levelHandler.draw(g);
         player.render(g);
-        levelHandler.draw(g);
+
 }
     @Override
     public void run() {
