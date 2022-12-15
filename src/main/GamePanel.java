@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
 
     private BufferedImage[][] animations;
 
-    private int aniTick, aniIndex, aniSpeed = 15;
+    private int aniTick, aniIndex, aniSpeed = 10;
     private int playerAction = IDLE;
     private int playerDir = -1;
     private boolean moving = false;
@@ -102,12 +102,6 @@ private Game game;
 
 
     }
- //   public void paintComponent(Graphics g) {
- //       super.paintComponent(g);
-//
- //       updateAnimationTick();
-
-  //      g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,80,null);
 
 
     public void setAnimation() {
