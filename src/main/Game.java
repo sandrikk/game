@@ -32,7 +32,7 @@ public class Game implements Runnable{
     }
 
     private void initClasses() {
-        player=new Player(200,200);
+        player=new Player(200,200, (int) (64*scaling), (int) (40*scaling));
         levelHandler = new LevelHandler(this);
     }
 
@@ -40,17 +40,17 @@ public class Game implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
     }
-public void update() {
-      //  gamePanel.updateGame();
-    levelHandler.update();
-    player.update();
+    public void update() {
+          //  gamePanel.updateGame();
+        levelHandler.update();
+        player.update();
 
-}
-public void render(Graphics g) {
-    levelHandler.draw(g);
-        player.render(g);
+    }
+    public void render(Graphics g) {
+        levelHandler.draw(g);
+            player.render(g);
 
-}
+    }
     @Override
     public void run() {
 

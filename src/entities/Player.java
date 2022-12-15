@@ -22,11 +22,9 @@ public class Player extends Entity {
     private float playerSpeed= 1.5f;
 
 
-
-    public Player(float x, float y) {
-        super(x, y);
+    public Player(float x, float y, int width, int height) {
+        super(x, y, width, height);
         loadAnimations();
-
     }
 
 
