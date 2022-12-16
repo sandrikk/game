@@ -12,6 +12,7 @@ import java.io.InputStream;
 import static utilz.Constants.Directions.*;
 import static utilz.Constants.Directions.DOWN;
 import static utilz.Constants.PlayerConstants.*;
+import static utilz.HelpMethods.CanMoveHere;
 
 public class Player extends Entity {
     private BufferedImage[][] animations;
@@ -20,6 +21,7 @@ public class Player extends Entity {
     private boolean moving = false;
     private boolean left, up, right, down;
     private float playerSpeed= 1.5f;
+    private int[][] levelData;
 
 
     public Player(float x, float y, int width, int height) {
@@ -31,6 +33,7 @@ public class Player extends Entity {
     public void update() {
 
         updatePos();
+        updateImagebox();
         updateAnimationTick();
         setAnimation();
 
@@ -38,6 +41,7 @@ public class Player extends Entity {
 
     public void render(Graphics g) {
         g.drawImage(animations[playerAction][aniIndex], (int) x,(int) y,120,80,null);
+        drawImagebox(g);
     }
 
 
@@ -61,24 +65,33 @@ public class Player extends Entity {
     }
     private void updatePos() {
         moving = false;
+        if (!left && !right && !up && !down) {
+            return;
+        }
+
+        float xSpeed = 0, ySpeed = 0;
+
         if(left && !right) {
-            x-=playerSpeed;
-            moving=true;
+            xSpeed = -playerSpeed;
+
         }else if (right && !left){
-            x+=playerSpeed;
-            moving=true;
+            xSpeed = playerSpeed;
         }
 
         if(up && !down) {
-            y-=playerSpeed;
-            moving=true;
+            ySpeed = -playerSpeed;
         }else if(down && !up) {
-            y+=playerSpeed;
-            moving=true;
+            ySpeed = playerSpeed;
+
+        }
+
+        if (CanMoveHere(x + xSpeed, y + ySpeed, width, height, levelData)) {
+            this.x += xSpeed;
+            this.y += ySpeed;
+            moving = true;
         }
 
     }
-
 
 
     private void loadAnimations() {
@@ -91,7 +104,11 @@ public class Player extends Entity {
                 for (int i = 0; i < animations[j].length; i++)
                     animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
 
-        }
+    }
+
+    public void loadLevelData(int[][] levelData) {
+        this.levelData = levelData;
+    }
 
 
 

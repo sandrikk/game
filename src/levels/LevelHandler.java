@@ -44,4 +44,8 @@ public class LevelHandler {
     public void update(){
 
     }
+
+    public Level getCurrentLevel() {
+        return levelOne;
+    }
 }
