@@ -15,7 +15,7 @@ import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.CanMoveHere;
 
 public class Player extends Entity {
-    private BufferedImage[][] animations;
+    private BufferedImage[][] animations; //Deals with switching images for animations.
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
     private boolean moving = false;
