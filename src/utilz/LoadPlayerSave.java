@@ -11,7 +11,7 @@ import java.io.InputStream;
 public class LoadPlayerSave {
 
     public static final String Player_Atlas = "characters8.png";
-    //public static final String Level_Atlas = "backgroundJungle.png";
+    public static final String Background_Atlas = "backgroundJungle.png";
     public static final String Level_Atlas = "tile-sprites.png";
     public static final String Level_One_Data = "level_one_data.png";
 
