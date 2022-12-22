@@ -1,12 +1,13 @@
 package entities;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Entity {
 
     protected float x, y;
     protected int width, height;
-    protected Rectangle imagebox;
+    protected Rectangle2D.Float imagebox;
 
     public Entity(float x, float y, int width, int height) {
         this.x = x;
