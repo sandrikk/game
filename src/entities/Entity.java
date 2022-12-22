@@ -15,24 +15,27 @@ public abstract class Entity {
         this.width = width;
         this.height = height;
 
-        initImagebox();
+        //initImagebox();
     }
 
     protected void drawImagebox(Graphics g) {
         g.setColor(Color.red);
-        g.drawRect(imagebox.x, imagebox.y, imagebox.width, imagebox.height);
+        g.drawRect((int)imagebox.x, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
     }
 
-    private void initImagebox() {
-        imagebox = new Rectangle((int) x,(int) y,width,height);
+    protected void initImagebox(float x, float y, float width, float height) {
+        imagebox = new Rectangle2D.Float( x,y,width,height);
     }
 
+    /*
     public void updateImagebox() {
         imagebox.x = (int) x;
         imagebox.y = (int) y;
     }
 
-    public Rectangle getImagebox() {
+     */
+
+    public Rectangle2D.Float getImagebox() {
         return imagebox;
     }
 }

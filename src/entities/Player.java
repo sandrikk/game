@@ -1,5 +1,6 @@
 package entities;
 
+import main.Game;
 import utilz.LoadPlayerSave;
 
 import java.awt.Graphics;
@@ -22,25 +23,27 @@ public class Player extends Entity {
     private boolean left, up, right, down;
     private float playerSpeed= 1.5f;
     private int[][] levelData;
+    private float xDrawOffset = 21 * Game.scaling;
+    private float yDrawOffset = 4 * Game.scaling;
 
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
+        initImagebox(x,y,20*Game.scaling,38*Game.scaling);
     }
 
 
     public void update() {
 
         updatePos();
-        updateImagebox();
         updateAnimationTick();
         setAnimation();
 
     }
 
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int) x,(int) y,120,80,null);
+        g.drawImage(animations[playerAction][aniIndex], (int)(imagebox.x - xDrawOffset),(int)(imagebox.y - yDrawOffset),120,80,null);
         drawImagebox(g);
     }
 
@@ -85,9 +88,9 @@ public class Player extends Entity {
 
         }
 
-        if (CanMoveHere(x + xSpeed, y + ySpeed, width, height, levelData)) {
-            this.x += xSpeed;
-            this.y += ySpeed;
+        if (CanMoveHere(imagebox.x + xSpeed, imagebox.y + ySpeed, imagebox.width, imagebox.height, levelData)) {
+            imagebox.x += xSpeed;
+            imagebox.y += ySpeed;
             moving = true;
         }
 
