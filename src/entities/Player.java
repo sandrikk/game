@@ -115,7 +115,6 @@ public class Player extends Entity {
 
     private void jump() {
         if (inAir) {
-            return;
         } else {
             inAir = true;
             airSpeed = jumpSpeed;
