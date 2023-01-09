@@ -40,7 +40,7 @@ player.render(g);
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("mouse clicked");
+
     }
 
     @Override
