@@ -52,7 +52,7 @@ public class HelpMethods {
     }
 
     public static float GetEntityYPosUnderRoofOrAboveFloor(Rectangle2D.Float imagebox, float airSpeed) {
-        int currentTile = (int) (imagebox.y / Game.tiles_size);
+        int currentTile = (int)(imagebox.y / Game.tiles_size);
         if (airSpeed > 0) {
             //Falling
             int tileYPos = currentTile * Game.tiles_size;
