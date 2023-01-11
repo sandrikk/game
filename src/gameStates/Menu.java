@@ -18,7 +18,8 @@ public class Menu extends State implements GameStateMethod {
 
     @Override
     public void draw(Graphics g) {
-
+g.setColor(Color.black);
+g.drawString("MENU", Game.game_width/2, 200);
     }
 
     @Override
@@ -43,7 +44,8 @@ public class Menu extends State implements GameStateMethod {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+if(e.getKeyCode()==KeyEvent.VK_ENTER)
+    GameState.state=GameState.RUNNINGGAME;
     }
 
     @Override

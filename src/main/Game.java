@@ -7,6 +7,8 @@ import levels.LevelHandler;
 
 import java.awt.Graphics;
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 public class Game implements Runnable {
     private GameWindow gameWindow;
@@ -37,6 +39,8 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
+menu= new Menu(this.toString());
+runningGame = new RunningGame(this);
 
     }
 
@@ -50,8 +54,10 @@ public class Game implements Runnable {
 
         switch (GameState.state) {
             case MENU:
+
                 break;
             case RUNNINGGAME:
+                runningGame.update();
                 break;
             default:
                 break;
@@ -64,9 +70,10 @@ public class Game implements Runnable {
 
         switch (GameState.state) {
             case MENU:
+
                 break;
             case RUNNINGGAME:
-
+runningGame.draw(g);
                 break;
             default:
                 break;
@@ -128,11 +135,10 @@ public class Game implements Runnable {
     public void windowFocusLost() {
 
     }
-    public Menu getMenu() {
-        return menu;
+    public MouseListener getMenu() {
+        return (MouseListener) menu;
     }
     public RunningGame getPlaying() {
         return runningGame;
     }
-
-}
+    }
