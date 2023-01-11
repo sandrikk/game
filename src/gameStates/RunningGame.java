@@ -77,7 +77,7 @@ player.render(g);
                 player.setJump(true);
                 break;
             case KeyEvent.VK_BACK_SPACE:
-                GameState.state= GameState.MENU;
+                GameState.state= GameState.MAINMENU;
 
         }
 

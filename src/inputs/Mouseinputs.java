@@ -15,7 +15,7 @@ public class Mouseinputs implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         switch(GameState.state) {
-            case MENU:
+            case MAINMENU:
                 gamePanel.getGame().getMenu().mouseClicked(e);
                 break;
             case RUNNINGGAME:

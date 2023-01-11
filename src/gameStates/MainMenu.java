@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Menu extends State implements GameStateMethod {
-    public Menu(Game game) {
+public class MainMenu extends State implements GameStateMethod {
+    public MainMenu(Game game) {
         super(game);
     }
 
@@ -18,8 +18,8 @@ public class Menu extends State implements GameStateMethod {
 
     @Override
     public void draw(Graphics g) {
-g.setColor(Color.black);
-g.drawString("MENU", Game.game_width/2, 200);
+        g.setColor(Color.black);
+        g.drawString("MENU", Game.game_width/2, 200);
     }
 
     @Override
@@ -44,8 +44,8 @@ g.drawString("MENU", Game.game_width/2, 200);
 
     @Override
     public void keyPressed(KeyEvent e) {
-if(e.getKeyCode()==KeyEvent.VK_ENTER)
-    GameState.state=GameState.RUNNINGGAME;
+        if(e.getKeyCode()==KeyEvent.VK_ENTER)
+            GameState.state=GameState.RUNNINGGAME;
     }
 
     @Override

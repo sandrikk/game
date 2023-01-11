@@ -2,6 +2,7 @@ package main;
 
 import entities.Player;
 import gameStates.GameState;
+import gameStates.MainMenu;
 import gameStates.RunningGame;
 import levels.LevelHandler;
 
@@ -17,7 +18,7 @@ public class Game implements Runnable {
     private final int FPS_Set = 133;
     private final int UPS_Set = 210;
     private RunningGame runningGame;
-    private Menu menu;
+    private MainMenu mainMenu;
     private Player player;
     private LevelHandler levelHandler;
 
@@ -39,7 +40,7 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
-menu= new Menu(this.toString());
+mainMenu= new MainMenu(this);
 runningGame = new RunningGame(this);
 
     }
@@ -53,7 +54,7 @@ runningGame = new RunningGame(this);
         //  gamePanel.updateGame();
 
         switch (GameState.state) {
-            case MENU:
+            case MAINMENU:
 
                 break;
             case RUNNINGGAME:
@@ -69,7 +70,7 @@ runningGame = new RunningGame(this);
     public void render(Graphics g) {
 
         switch (GameState.state) {
-            case MENU:
+            case MAINMENU:
 
                 break;
             case RUNNINGGAME:
@@ -82,7 +83,7 @@ runningGame.draw(g);
 
         levelHandler.drawBackground(g);
         levelHandler.draw(g);
-        player.render(g);
+       player.render(g);
 
     }
 
@@ -135,8 +136,8 @@ runningGame.draw(g);
     public void windowFocusLost() {
 
     }
-    public MouseListener getMenu() {
-        return (MouseListener) menu;
+    public MainMenu getMenu() {
+        return mainMenu;
     }
     public RunningGame getPlaying() {
         return runningGame;
