@@ -135,13 +135,9 @@ runningGame.draw(g);
     public void windowFocusLost() {
 
     }
-    public MouseListener getMenuMouseListener() {
+    public MouseListener getMenu() {
         return (MouseListener) menu;
     }
-    public KeyListener getMenuKeyListener() {
-        return (KeyListener) menu;
-    }
-
     public RunningGame getPlaying() {
         return runningGame;
     }

@@ -25,7 +25,7 @@ public class Keyboardinputs implements KeyListener {
         switch (GameState.state) {
             case MENU:
                 //same errorr as the one with Mouselistener cannot have both mouse and key listener method in game for the menu
-                gamePanel.getGame().getMenuKeyListener().keyPressed(e);
+                gamePanel.getGame().getMenu();
                 break;
             case RUNNINGGAME:
                 gamePanel.getGame().getPlaying().keyPressed(e);
@@ -42,7 +42,7 @@ public class Keyboardinputs implements KeyListener {
         switch (GameState.state) {
             case MENU:
                 //same errorr as the one with Mouselistener cannot have both mouse and key listener method in game for the menu
-                gamePanel.getGame().getMenuKeyListener();
+                gamePanel.getGame().getMenu();
                 break;
             case RUNNINGGAME:
                 gamePanel.getGame().getPlaying().keyReleased(e);
