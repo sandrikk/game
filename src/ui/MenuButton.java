@@ -21,7 +21,11 @@ public class MenuButton {
         this.state = state;
         this.rowIndex = rowIndex;
         loadImages();
-        //initBounds();
+        initBounds();
+    }
+
+    private void initBounds() {
+        bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
     }
 
     private void loadImages() {
@@ -61,6 +65,15 @@ public class MenuButton {
         if (mousePressed) {
             index = 2;
         }
+    }
+
+    public void applyGameState() {
+        Gamestate.state = state;
+    }
+
+    public void resetBools() {
+        mouseOver = false;
+        mousePressed = false;
     }
 
 }
