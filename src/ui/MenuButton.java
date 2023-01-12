@@ -1,6 +1,7 @@
 package ui;
 
 import gamestates.Gamestate;
+import utilz.LoadPlayerSave;
 
 import java.awt.image.BufferedImage;
 
@@ -17,6 +18,11 @@ public class MenuButton {
     }
 
     private void loadImages() {
+        images = new BufferedImage[3];
+        BufferedImage temp = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Menu_Buttons);
+        for (int i = 0; i < images.length; i++) {
+
+        }
     }
 
 }
