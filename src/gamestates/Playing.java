@@ -34,18 +34,25 @@ public class Playing extends State implements Gamestatemethods{
 
     @Override
     public void update() {
+        levelHandler.update();
+        player.update();
 
     }
 
     @Override
     public void draw(Graphics g) {
+        levelHandler.draw(g);
+        player.render(g);
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1)
-            player.setAttacking(true);
+        if (e.getButton() == MouseEvent.BUTTON1){
+            // player.setAttacking(true);
+
+        }
+
 
     }
 

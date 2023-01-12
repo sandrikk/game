@@ -39,6 +39,8 @@ public class Game implements Runnable{
     }
 
     private void initClasses() {
+        menu = new MainMenu(this);
+        playing = new Playing(this);
 
     }
 
@@ -51,9 +53,10 @@ public class Game implements Runnable{
 
         switch(Gamestate.state) {
             case MAINMENU:
-
+                menu.update();
                 break;
             case PLAYING:
+                playing.update();
 
                 break;
             default:
@@ -67,9 +70,11 @@ public class Game implements Runnable{
 
         switch(Gamestate.state) {
             case MAINMENU:
+                menu.draw(g);
 
                 break;
             case PLAYING:
+                playing.draw(g);
                 //levelHandler.drawBackground(g);
                 //levelHandler.draw(g);
                 //player.render(g);
@@ -95,7 +100,7 @@ public class Game implements Runnable{
         double indexUpdate=0;
         double indexFrame=0;
 
-        while (true) {
+        while (true ) {
 
             long currentTime= System.nanoTime();
 
@@ -126,7 +131,17 @@ public class Game implements Runnable{
         }
     }
     public void windowFocusLost() {
+        if (Gamestate.state == Gamestate.PLAYING) {
+            playing.getPlayer().resetDirectionsBooleans();
 
+        }
+
+    }
+    public MainMenu getMenu(){
+        return menu;
+    }
+    public Playing getPlaying(){
+        return playing;
     }
 
 }
