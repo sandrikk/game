@@ -1,0 +1,103 @@
+package gamestates;
+
+import entities.Player;
+import levels.LevelHandler;
+import main.Game;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
+public class Playing extends State implements Gamestatemethods{
+    private Player player;
+    private LevelHandler levelHandler;
+
+    public Playing(Game game) {
+        super(game);
+        initClasses();
+    }
+
+
+    private void initClasses() {
+        levelHandler = new LevelHandler(game);
+        player=new Player(200,200, (int) (64*Game.scaling), (int) (40*Game.scaling));
+        player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
+    }
+
+
+    public void windowFocusLost() {
+        player.resetDirectionsBooleans();
+    }
+    public Player getPlayer() {
+        return player;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Graphics g) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                player.setUp(true);
+                break;
+            case KeyEvent.VK_A:
+                player.setLeft(true);
+                break;
+            case KeyEvent.VK_S:
+                player.setDown(true);
+                break;
+            case KeyEvent.VK_D:
+                player.setRight(true);
+                break;
+            case KeyEvent.VK_SPACE:
+                player.setJump(true);
+                break;
+
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_A:
+                player.setLeft(false);
+                break;
+            case KeyEvent.VK_D:
+                player.setRight(false);
+                break;
+            case KeyEvent.VK_SPACE:
+                player.setJump(false);
+                break;
+        }
+
+    }
+}
