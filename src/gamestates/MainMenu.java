@@ -2,18 +2,26 @@ package gamestates;
 
 import main.Game;
 import ui.MenuButton;
+import utilz.LoadPlayerSave;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public class MainMenu extends State implements Gamestatemethods {
     private MenuButton[] buttons = new MenuButton[3];
+    private BufferedImage menu_background;
 
     public MainMenu(Game game) {
 
         super(game);
         loadButtons();
+        loadMenuBackground();
+    }
+
+    private void loadMenuBackground() {
+        menu_background = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Menu_Background);
     }
 
     private void loadButtons() {
@@ -32,9 +40,12 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void draw(Graphics g) {
+        g.drawImage(menu_background,0,0,null);
+
         for (MenuButton mb: buttons) {
             mb.draw(g);
         }
+
 
     }
 

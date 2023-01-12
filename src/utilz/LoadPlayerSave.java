@@ -15,6 +15,7 @@ public class LoadPlayerSave {
     public static final String Level_Atlas = "tile-sprites.png";
     public static final String Level_One_Data = "level_one_data.png";
     public static final String Menu_Buttons = "button_atlas.png";
+    public static final String Menu_Background = "background_menu.jpg";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;
