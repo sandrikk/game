@@ -28,6 +28,10 @@ public class MenuButton {
         bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
     }
 
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
     private void loadImages() {
         images = new BufferedImage[3];
         BufferedImage temp = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Menu_Buttons);

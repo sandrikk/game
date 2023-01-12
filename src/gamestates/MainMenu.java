@@ -18,8 +18,8 @@ public class MainMenu extends State implements Gamestatemethods {
 
     private void loadButtons() {
         buttons[0] = new MenuButton(Game.game_width / 2, (int) (150 * Game.scaling), 0, Gamestate.PLAYING);
-        buttons[1] = new MenuButton(Game.game_width / 2, (int) (220 * Game.scaling), 0, Gamestate.OPTIONS);
-        buttons[2] = new MenuButton(Game.game_width / 2, (int) (290 * Game.scaling), 0, Gamestate.QUIT);
+        buttons[1] = new MenuButton(Game.game_width / 2, (int) (220 * Game.scaling), 1, Gamestate.OPTIONS);
+        buttons[2] = new MenuButton(Game.game_width / 2, (int) (290 * Game.scaling), 2, Gamestate.QUIT);
     }
 
     @Override
@@ -45,16 +45,46 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        for (MenuButton mb: buttons) {
+            if (isIn(e,mb)) {
+                mb.setMousePressed(true);
+                break;
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        for (MenuButton mb: buttons) {
+            if (isIn(e,mb)) {
+                if (mb.isMousePressed()) {
+                    mb.applyGameState();
+                }
+                break;
+            }
+        }
+        resetButtons();
 
+    }
+
+    private void resetButtons() {
+        for (MenuButton mb: buttons) {
+            mb.resetBools();
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        for (MenuButton mb: buttons) {
+            mb.setMouseOver(false);
+        }
+
+        for (MenuButton mb: buttons) {
+            if (isIn(e, mb)) {
+                mb.setMouseOver(true);
+                break;
+            }
+        }
 
     }
 
