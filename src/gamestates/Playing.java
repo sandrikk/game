@@ -44,6 +44,8 @@ public class Playing extends State implements Gamestatemethods{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1)
+            player.setAttacking(true);
 
     }
 
@@ -65,14 +67,9 @@ public class Playing extends State implements Gamestatemethods{
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_W:
-                player.setUp(true);
-                break;
+
             case KeyEvent.VK_A:
                 player.setLeft(true);
-                break;
-            case KeyEvent.VK_S:
-                player.setDown(true);
                 break;
             case KeyEvent.VK_D:
                 player.setRight(true);
