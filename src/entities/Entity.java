@@ -20,7 +20,9 @@ public abstract class Entity {
 
     protected void drawImagebox(Graphics g) {
         g.setColor(Color.red);
-        g.drawRect((int)imagebox.x, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
+
+        // red rectangle
+        //g.drawRect((int)imagebox.x, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
     }
 
     protected void initImagebox(float x, float y, float width, float height) {

@@ -12,7 +12,7 @@ public class LoadPlayerSave {
 
     public static final String Player_Atlas = "characters8.png";
     public static final String Background_Atlas = "backgroundJungle.png";
-    public static final String Level_Atlas = "tile-sprites.png";
+    public static final String Level_Atlas = "sand_tiles2.png";
     public static final String Level_One_Data = "level_one_data.png";
     public static final String Menu_Buttons = "button_atlas.png";
     public static final String Menu_Background = "background_menu.jpg";
