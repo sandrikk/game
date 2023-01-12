@@ -37,7 +37,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initImagebox(x,y,20*Game.scaling,38*Game.scaling);
+        initImagebox(x,y,20*Game.scaling,30*Game.scaling);
     }
 
 
@@ -89,6 +89,12 @@ public class Player extends Entity {
         }
         if (right){
             xSpeed += playerSpeed;
+        }
+
+        if(!inAir) {
+            if (!IsEntityOnFloor(imagebox,levelData)) {
+                inAir = true;
+            }
         }
 
         if (inAir) {
@@ -150,6 +156,9 @@ public class Player extends Entity {
 
     public void loadLevelData(int[][] levelData) {
         this.levelData = levelData;
+        if (!IsEntityOnFloor(imagebox, levelData)) {
+            inAir = true;
+        }
     }
 
 

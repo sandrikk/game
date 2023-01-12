@@ -63,4 +63,13 @@ public class HelpMethods {
             return currentTile * Game.tiles_size;
         }
     }
+
+    public static boolean IsEntityOnFloor(Rectangle2D.Float imagebox, int[][] levelData) {
+        if (!IsSolid(imagebox.x, imagebox.y + imagebox.height + 1, levelData )) {
+            if (!IsSolid(imagebox.x + imagebox.width, imagebox.y + imagebox.height + 1, levelData )) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
