@@ -13,7 +13,7 @@ public class Playing extends State implements Gamestatemethods {
     private Player player;
     private LevelHandler levelHandler;
     private long lastTime = new Date().getTime() / 1000;
-    private int count = 301;
+    private int count = 101;
 
     public Playing(Game game) {
         super(game);
