@@ -4,15 +4,15 @@ import inputs.Keyboardinputs;
 import inputs.Mouseinputs;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import static main.Game.game_height;
+import static main.Game.game_width;
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.Constants.Directions.*;
 
@@ -24,19 +24,20 @@ public class GamePanel extends JPanel {
     private long lastCheck =0;
 
     private BufferedImage img;
-    private long lastTime = new Date().getTime()/1000;
+
 
     private BufferedImage[][] animations;
 
-    private int aniTick, aniIndex, aniSpeed = 15;
+    private int aniTick, aniIndex, aniSpeed = 10;
     private int playerAction = IDLE;
     private int playerDir = -1;
     private boolean moving = false;
-    private int count = 300;
 
+private Game game;
 
-    public GamePanel() {
+    public GamePanel(Game game) {
         mouseInputs = new Mouseinputs(this);
+        this.game=game;
         importImg();
         loadAnimations();
         setPanelSize();
@@ -67,10 +68,11 @@ public class GamePanel extends JPanel {
 
 
     private void setPanelSize() {
-        Dimension size = new Dimension(1280,800);
+        Dimension size = new Dimension(game_width,game_height);
         setMinimumSize(size);
         setMaximumSize(size);
         setPreferredSize(size);
+
 
     }
 
@@ -97,15 +99,9 @@ public class GamePanel extends JPanel {
     }
 
     public void updateGame() {
-        updateAnimationTick();
+
 
     }
- //   public void paintComponent(Graphics g) {
- //       super.paintComponent(g);
-//
- //       updateAnimationTick();
-
-  //      g.drawImage(animations[aniIndex], (int) xDelta,(int) yDelta,120,80,null);
 
 
     public void setAnimation() {
@@ -152,23 +148,21 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        game.render(g);
 
-        g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
 
-        long currentTime = new Date().getTime()/1000;
-        g.setFont(new  Font("TimesRoman",Font.PLAIN,40));
-        if (currentTime - lastTime >= 1){
-            count--;
-            this.lastTime = new Date().getTime()/1000;
-        }
-        g.drawString(String.valueOf(count), 1200, 50);
+     //   g.drawImage(animations[playerAction][aniIndex], (int) xDelta,(int) yDelta,64,40,null);
+
+
 
         updateAnimationTick();
         setAnimation();
         updatePos();
 
     }
-
+public Game getGame() {
+        return game;
+}
 
 }
 
