@@ -3,6 +3,7 @@ package gamestates;
 import entities.Player;
 import levels.LevelHandler;
 import main.Game;
+import utilz.LoadPlayerSave;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,15 @@ import java.util.Date;
 public class Playing extends State implements Gamestatemethods {
     private Player player;
     private LevelHandler levelHandler;
+
+    private int xLevelOffset;
+    private int leftBorder = (int) (0.2 * Game.game_width);
+    private int rightBorder = (int) (0.8 * Game.game_width);
+    private int levelWideTiles = LoadPlayerSave.GetLevelInfo()[0].length;
+    private int maximumTilesOffset = levelWideTiles - Game.tiles_in_width;
+    private int maximumLevelOffsetX = maximumTilesOffset * Game.tiles_size;
+
+
     private long lastTime = new Date().getTime() / 1000;
     private int count = 101;
 
@@ -41,12 +51,28 @@ public class Playing extends State implements Gamestatemethods {
 
         levelHandler.update();
         player.update();
+        checkIfCloseToBorder();
 
     }
+    private void checkIfCloseToBorder() {
+        int playerX = (int) player.getImagebox().x;
+        int difference = playerX - xLevelOffset;
+
+        if (difference > rightBorder){
+            xLevelOffset += difference - rightBorder;
+        }else if (difference < leftBorder){
+            xLevelOffset += difference-leftBorder;
+        }
+        if (xLevelOffset > maximumLevelOffsetX){
+            xLevelOffset = maximumLevelOffsetX;
+        }else if (xLevelOffset < 0)
+            xLevelOffset = 0;
+    }
+
 
     @Override
     public void draw(Graphics g) {
-        levelHandler.drawBackground(g);
+        levelHandler.drawBackground(g,xLevelOffset);
         levelHandler.draw(g);
         player.render(g);
         showTimer(g);
@@ -130,5 +156,6 @@ public class Playing extends State implements Gamestatemethods {
         }
 
     }
+
 
 }

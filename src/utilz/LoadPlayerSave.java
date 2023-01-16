@@ -13,7 +13,8 @@ public class LoadPlayerSave {
     public static final String Player_Atlas = "characters8.png";
     public static final String Background_Atlas = "backgroundJungle.png";
     public static final String Level_Atlas = "sand_tiles.png";
-    public static final String Level_One_Data = "level_one_data.png";
+    //public static final String Level_One_Data = "level_one_data.png";
+    public static final String Level_One_Data = "level_longer.png";
     public static final String Menu_Buttons = "button_atlas.png";
     public static final String Menu_Background = "background_menu.jpg";
 
@@ -37,8 +38,9 @@ public class LoadPlayerSave {
     }
 
     public static int[][] GetLevelInfo() {
-        int[][] levelInfo = new int[Game.tiles_in_height][Game.tiles_in_width];
+
         BufferedImage img = GetSpriteAtlas(Level_One_Data);
+        int[][] levelInfo = new int[img.getHeight()][img.getWidth()];
 
         for (int j = 0; j < img.getHeight(); j++) {
             for (int i = 0; i < img.getWidth(); i++) {
