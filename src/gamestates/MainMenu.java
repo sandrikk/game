@@ -101,9 +101,6 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER){
-            Gamestate.state = Gamestate.PLAYING;
-        }
 
     }
 
