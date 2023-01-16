@@ -32,16 +32,16 @@ public class LevelHandler {
         }
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xLevelOffset) {
         for (int j = 0; j < Game.tiles_in_height; j++) {
-            for (int i = 0; i < Game.tiles_in_width; i++) {
+            for (int i = 0; i < levelOne.getLevelData()[0].length; i++) {
                 int index = levelOne.getSpriteIndex(i, j);
-                g.drawImage(levelSprite[index],tiles_size*i,tiles_size*j,tiles_size,tiles_size,null);
+                g.drawImage(levelSprite[index],tiles_size*i - xLevelOffset,tiles_size*j,tiles_size,tiles_size,null);
             }
         }
     }
 
-    public void drawBackground(Graphics g) {
+    public void drawBackground(Graphics g, int xLevelOffset) {
         g.drawImage(backgroundSprite,0,0,null);
     }
 

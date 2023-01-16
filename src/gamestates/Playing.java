@@ -73,8 +73,8 @@ public class Playing extends State implements Gamestatemethods {
     @Override
     public void draw(Graphics g) {
         levelHandler.drawBackground(g,xLevelOffset);
-        levelHandler.draw(g);
-        player.render(g);
+        levelHandler.draw(g, xLevelOffset);
+        player.render(g, xLevelOffset);
         showTimer(g);
 
 
