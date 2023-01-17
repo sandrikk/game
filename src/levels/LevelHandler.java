@@ -45,6 +45,7 @@ public class LevelHandler {
         g.drawImage(backgroundSprite,0,0,null);
     }
 
+
     public void update(){
 
     }

@@ -8,6 +8,7 @@ import utilz.LoadPlayerSave;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.Date;
 
 public class Playing extends State implements Gamestatemethods {
@@ -25,9 +26,12 @@ public class Playing extends State implements Gamestatemethods {
     private long lastTime = new Date().getTime() / 1000;
     private int count = 101;
 
+    private BufferedImage backgroundImg;
+
     public Playing(Game game) {
         super(game);
         initClasses();
+
     }
 
 
