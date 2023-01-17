@@ -51,7 +51,7 @@ public class Player extends Entity {
 
     public void render(Graphics g, int xLevelOffset) {
         g.drawImage(animations[playerAction][aniIndex], (int)(imagebox.x - xDrawOffset) - xLevelOffset,(int)(imagebox.y - yDrawOffset),120,80,null);
-        drawImagebox(g);
+        drawImagebox(g, xLevelOffset);
     }
 
 

@@ -18,6 +18,8 @@ public class Constants {
 
         public static final int PUMA_HEIGHT = (int) (PUMA_HEIGHT_DEFAULT * Game.scaling);
         public static final int PUMA_WIDTH = (int) (PUMA_WIDTH_DEFAULT * Game.scaling);
+        public static final int PUMA_DRAWOFFSET_X = (int)(26 * Game.scaling);
+        public static final int PUMA_DRAWOFFSET_Y = (int)(9 * Game.scaling);
 
         public static int GetSpriteAmount(int enemy_type, int enemy_state){
             switch (enemy_type) {

@@ -22,8 +22,12 @@ public abstract class Enemy extends Entity {
         }
     }
 
-    public void update() {
+    public void update(int[][] lvlData) {
+        updateMove(lvlData);
         updateAnimationTick();
+    }
+    private void updateMove(int[][] lvlData) {
+
     }
 
     public int getAniIndex() {

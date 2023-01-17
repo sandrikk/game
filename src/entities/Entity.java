@@ -18,11 +18,11 @@ public abstract class Entity {
         //initImagebox();
     }
 
-    protected void drawImagebox(Graphics g) {
+    protected void drawImagebox(Graphics g, int xLvlOffset) {
         g.setColor(Color.red);
 
         // red rectangle
-        //g.drawRect((int)imagebox.x, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
+        g.drawRect((int)imagebox.x - xLvlOffset, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
     }
 
     protected void initImagebox(float x, float y, float width, float height) {
