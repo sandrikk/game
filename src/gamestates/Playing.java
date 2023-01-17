@@ -1,5 +1,6 @@
 package gamestates;
 
+import entities.EnemyManager;
 import entities.Player;
 import levels.LevelHandler;
 import main.Game;
@@ -14,6 +15,7 @@ import java.util.Date;
 public class Playing extends State implements Gamestatemethods {
     private Player player;
     private LevelHandler levelHandler;
+    private EnemyManager enemyManager;
 
     private int xLevelOffset;
     private int leftBorder = (int) (0.2 * Game.game_width);
@@ -37,6 +39,7 @@ public class Playing extends State implements Gamestatemethods {
 
     private void initClasses() {
         levelHandler = new LevelHandler(game);
+        enemyManager = new EnemyManager(this);
         player = new Player(200, 200, (int) (64 * Game.scaling), (int) (40 * Game.scaling));
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
     }
@@ -55,6 +58,7 @@ public class Playing extends State implements Gamestatemethods {
 
         levelHandler.update();
         player.update();
+        enemyManager.update();
         checkIfCloseToBorder();
 
     }
@@ -79,6 +83,7 @@ public class Playing extends State implements Gamestatemethods {
         levelHandler.drawBackground(g,xLevelOffset);
         levelHandler.draw(g, xLevelOffset);
         player.render(g, xLevelOffset);
+        enemyManager.draw(g, xLevelOffset);
         showTimer(g);
 
 
