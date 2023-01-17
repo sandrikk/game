@@ -4,6 +4,7 @@ import main.Game;
 
 import static utilz.Constants.EnemyConstants.*;
 import static utilz.HelpMethods.*;
+import static utilz.Constants.Directions.*;
 
 
 public abstract class Enemy extends Entity {
@@ -12,7 +13,9 @@ public abstract class Enemy extends Entity {
     private boolean firstUpdate = true;
     private boolean inAir;
     private float fallSpeed;
-    private float gravity = 0.04f * Game.scaling;
+    private float gravity = 0.05f * Game.scaling;
+    private float walkSpeed = 0.4f * Game.scaling;
+    private int walkDir = LEFT;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -37,12 +40,13 @@ public abstract class Enemy extends Entity {
     }
 
     private void updateMove(int[][] lvlData) {
-        if (firstUpdate)
+        if (firstUpdate) {
             if (!IsEntityOnFloor(imagebox, lvlData))
                 inAir = true;
-
+            firstUpdate = false;
+        }
         if (inAir) {
-            if (CanMoveHere(imagebox.x, imagebox.y + fallSpeed,imagebox.width, imagebox.height, lvlData)) {
+            if (CanMoveHere(imagebox.x, imagebox.y + fallSpeed, imagebox.width, imagebox.height, lvlData)) {
                 imagebox.y += fallSpeed;
                 fallSpeed += gravity;
             } else {
@@ -50,8 +54,37 @@ public abstract class Enemy extends Entity {
                 imagebox.y = GetEntityYPosUnderRoofOrAboveFloor(imagebox, fallSpeed);
             }
         } else {
+            switch (enemyState) {
+                case IDLE:
+                    enemyState = RUNNING;
+                    break;
+                case RUNNING:
+                    float xSpeed = 0;
 
+                    if (walkDir == LEFT)
+                        xSpeed = -walkSpeed;
+                    else
+                        xSpeed = walkSpeed;
+
+                    if (CanMoveHere(imagebox.x + xSpeed, imagebox.y, imagebox.width, imagebox.height, lvlData))
+                    if (IsFloor(imagebox, xSpeed, lvlData)) {
+                        imagebox.x += xSpeed;
+                        return;
+                    }
+
+                    changeWalkDir();
+
+                    break;
+            }
         }
+    }
+
+    private void changeWalkDir() {
+        if (walkDir == LEFT)
+            walkDir = RIGHT;
+        else
+            walkDir = LEFT;
+
     }
 
     public int getAniIndex() {
