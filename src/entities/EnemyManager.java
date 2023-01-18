@@ -24,9 +24,9 @@ public class EnemyManager {
         System.out.println(pumas.size());
     }
 
-    public void update(int[][] lvlData) {
+    public void update(int[][] lvlData,Player player) {
         for (Puma p: pumas) {
-            p.update(lvlData);
+            p.update(lvlData,player);
         }
     }
 

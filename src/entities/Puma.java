@@ -11,15 +11,13 @@ public class Puma extends Enemy {
         initImagebox(x,y,(int)(22* Game.scaling),(int)(19*Game.scaling));
     }
 
-    public void update(int[][] lvlData) {
-        updateMove(lvlData);
+    public void update(int[][] lvlData, Player player) {
+        updateMove(lvlData,player);
         updateAnimationTick();
     }
-    private void updateMove(int[][] lvlData) {
+    private void updateMove(int[][] lvlData, Player player) {
         if (firstUpdate)
             checkFirstUpdate(lvlData);
-
-
         if (inAir) {
         airUpdate(lvlData);
         } else {
@@ -28,6 +26,10 @@ public class Puma extends Enemy {
                     newState(RUNNING);
                     break;
                 case RUNNING:
+                    if (canSeeThePlayer(lvlData,player))
+                        turnToThePlayer(player);
+                    if (isThePlayerCloseForTheAttack(player))
+                        newState(ATTACK);
                     move(lvlData);
                     break;
             }

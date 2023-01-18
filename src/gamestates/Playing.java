@@ -58,7 +58,7 @@ public class Playing extends State implements Gamestatemethods {
 
         levelHandler.update();
         player.update();
-        enemyManager.update(levelHandler.getCurrentLevel().getLevelData());
+        enemyManager.update(levelHandler.getCurrentLevel().getLevelData(),player);
         checkIfCloseToBorder();
 
     }
