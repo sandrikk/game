@@ -142,8 +142,8 @@ public class Player extends Entity {
 
     }
     public void setAnimation() {
-        /*
-        if (moving) {
+
+       /* if (moving) {
             playerAction = RUNNING;
         } else {
             playerAction = IDLE;
@@ -229,6 +229,9 @@ public class Player extends Entity {
 
         moving = true;
 
+    }
+    public void setAttacking(boolean attacking) {
+        this.attacking = attacking;
     }
 
     private void jump() {
