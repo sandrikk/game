@@ -62,6 +62,10 @@ public class Playing extends State implements Gamestatemethods {
         checkIfCloseToBorder();
 
     }
+
+    public void resetAll() {
+
+    }
     private void checkIfCloseToBorder() {
         int playerX = (int) player.getImagebox().x;
         int difference = playerX - xLevelOffset;

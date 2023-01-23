@@ -3,6 +3,7 @@ package entities;
 import main.Game;
 
 import static utilz.Constants.EnemyConstants.*;
+import static utilz.Constants.GetMaxHealth;
 import static utilz.HelpMethods.*;
 import static utilz.Constants.Directions.*;
 
@@ -18,11 +19,14 @@ public abstract class Enemy extends Entity {
     protected float gravity = 0.05f * Game.scaling;
     protected float walkSpeed = 0.4f * Game.scaling;
     protected int walkDir = LEFT;
+    protected int maxHealth;
+    protected int currentHealth;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
         this.enemyType = enemyType;
         initImagebox(x, y, width, height);
+        maxHealth = GetMaxHealth(PUMA);
     }
     protected void checkFirstUpdate(int[][] lvlData) {
         if (!IsEntityOnFloor(imagebox, lvlData))

@@ -2,6 +2,8 @@ package utilz;
 
 import main.Game;
 
+import static utilz.Constants.EnemyConstants.PUMA;
+
 public class Constants {
 
     public static class EnemyConstants {
@@ -39,6 +41,15 @@ public class Constants {
             }
 
             return 0;
+        }
+    }
+
+    public static int GetMaxHealth(int enemy_type) {
+        switch (enemy_type) {
+            case PUMA:
+                return 10;
+            default:
+                return 1;
         }
     }
     public static class UI {

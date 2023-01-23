@@ -82,7 +82,6 @@ public class Player extends Entity {
         }
         
          */
-
         updateAttackBox();
         updatePos();
         updateAnimationTick();
@@ -106,13 +105,22 @@ public class Player extends Entity {
     public void render(Graphics g, int xLevelOffset) {
         g.drawImage(animations[playerAction][aniIndex], (int)(imagebox.x - xDrawOffset) - xLevelOffset + flipX,(int)(imagebox.y - yDrawOffset),width * flipW,height,null);
         //drawImagebox(g, xLevelOffset);
-        drawAttackBox(g, xLevelOffset);
+        //drawAttackBox(g, xLevelOffset);
         drawUI(g);
     }
+
+    /*
+    private void drawAttackBox(Graphics g, int lvlOffsetX) {
+        g.setColor(Color.red);
+        g.drawRect((int) attackBox.x - lvlOffsetX, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+    }
+
+     */
 
     private void drawAttackBox(Graphics g, int lvlOffsetX) {
         g.setColor(Color.red);
         g.drawRect((int) attackBox.x - lvlOffsetX, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+
     }
 
     private void drawUI(Graphics g) {
