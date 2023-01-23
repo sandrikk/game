@@ -21,12 +21,14 @@ public abstract class Enemy extends Entity {
     protected int walkDir = LEFT;
     protected int maxHealth;
     protected int currentHealth;
+    protected boolean active = true;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
         this.enemyType = enemyType;
         initImagebox(x, y, width, height);
         maxHealth = GetMaxHealth(PUMA);
+        currentHealth = maxHealth;
     }
     protected void checkFirstUpdate(int[][] lvlData) {
         if (!IsEntityOnFloor(imagebox, lvlData))
@@ -60,6 +62,14 @@ public abstract class Enemy extends Entity {
         changeWalkDir();
 
 
+    }
+
+    public void hurt(int amount) {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+            newState(DEAD);
+        else
+            newState(HIT);
     }
 
 
@@ -103,8 +113,11 @@ public abstract class Enemy extends Entity {
             aniIndex++;
             if (aniIndex >= GetSpriteAmount(enemyType, enemyState)) {
                 aniIndex = 0;
-                if (enemyState == ATTACK)
-                    enemyState = IDLE;
+
+                switch (enemyState) {
+                    case ATTACK, HIT -> enemyState = IDLE;
+                    case DEAD -> active = false;
+                }
 
             }
         }
@@ -167,5 +180,9 @@ public abstract class Enemy extends Entity {
 
     public int getEnemyState() {
         return enemyState;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

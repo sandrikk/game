@@ -5,6 +5,7 @@ import utilz.LoadPlayerSave;
 import static utilz.Constants.EnemyConstants.*;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -26,7 +27,8 @@ public class EnemyManager {
 
     public void update(int[][] lvlData,Player player) {
         for (Puma p: pumas) {
-            p.update(lvlData,player);
+            if (p.isActive())
+                p.update(lvlData,player);
         }
     }
 
@@ -36,9 +38,12 @@ public class EnemyManager {
 
     private void drawPumas(Graphics g, int xLevelOffset) {
         for (Puma p: pumas) {
-            g.drawImage(pumaArr[p.getEnemyState()][p.getAniIndex()], (int) p.getImagebox().x - xLevelOffset + p.flipX(), (int) p.getImagebox().y, PUMA_WIDTH * p.flipW(), PUMA_HEIGHT, null);
-            //p.drawImagebox(g, xLevelOffset);
-			//p.drawAttackBox(g, xLevelOffset);
+            if (p.isActive()) {
+                g.drawImage(pumaArr[p.getEnemyState()][p.getAniIndex()], (int) p.getImagebox().x - xLevelOffset + p.flipX(), (int) p.getImagebox().y, PUMA_WIDTH * p.flipW(), PUMA_HEIGHT, null);
+                p.drawImagebox(g, xLevelOffset);
+                p.drawAttackBox(g, xLevelOffset);
+            }
+
         }
     }
 
@@ -50,5 +55,14 @@ public class EnemyManager {
                 pumaArr[j][i] = temp.getSubimage(i * PUMA_WIDTH_DEFAULT, j * PUMA_HEIGHT_DEFAULT, PUMA_WIDTH_DEFAULT, PUMA_HEIGHT_DEFAULT);
             }
         }
+    }
+
+    public void checkEnemyHit(Rectangle2D.Float attackBox) {
+        for (Puma p : pumas)
+            if (p.isActive())
+                if (attackBox.intersects(p.getImagebox())) {
+                    p.hurt(10);
+                    return;
+                }
     }
 }

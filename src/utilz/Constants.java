@@ -52,6 +52,16 @@ public class Constants {
                 return 1;
         }
     }
+
+    public static int GetEnemyDmg(int enemy_type) {
+        switch (enemy_type) {
+            case PUMA:
+                return 15;
+            default:
+                return 0;
+        }
+    }
+
     public static class UI {
         public static class Buttons {
             public static final int B_WIDTH_DEFAULT = 140;
