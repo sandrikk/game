@@ -137,6 +137,8 @@ public class Player extends Entity {
             aniIndex++;
             if (aniIndex >= GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
+                attacking = false;
+                attackChecked = false;
             }
         }
 
