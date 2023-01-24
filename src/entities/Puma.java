@@ -12,7 +12,6 @@ import static utilz.HelpMethods.*;
 public class Puma extends Enemy {
     private Rectangle2D.Float attackBox;
     private int attackBoxOffsetX;
-    boolean attackChecked;
     
     public Puma(float x, float y) {
         super(x, y, PUMA_WIDTH, PUMA_HEIGHT, PUMA);
@@ -54,8 +53,11 @@ public class Puma extends Enemy {
                     move(lvlData);
 
                 case ATTACK:
+                    if (aniIndex == 0) {
+                        attackChecked = false;
+                    }
                     if (aniIndex == 3 && !attackChecked) {
-                        checkEnemyHit(player);
+                        checkEnemyHit(attackBox, player);
                     }
                     break;
                 case HIT:
@@ -63,9 +65,7 @@ public class Puma extends Enemy {
         }
     }
 
-    private void checkEnemyHit(Player player) {
 
-    }
 
     public void drawAttackBox(Graphics g, int xLvlOffset) {
         g.setColor(Color.red);

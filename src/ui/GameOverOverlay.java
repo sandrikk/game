@@ -7,10 +7,10 @@ import main.Game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class GameOver {
+public class GameOverOverlay {
     private Playing playing;
 
-    public GameOver(Playing playing) {
+    public GameOverOverlay(Playing playing) {
         this.playing = playing;
     }
 

@@ -4,11 +4,13 @@ import entities.EnemyManager;
 import entities.Player;
 import levels.LevelHandler;
 import main.Game;
+import ui.GameOverOverlay;
 import utilz.LoadPlayerSave;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ public class Playing extends State implements Gamestatemethods {
     private Player player;
     private LevelHandler levelHandler;
     private EnemyManager enemyManager;
+    private GameOverOverlay gameOverOverlay;
 
     private int xLevelOffset;
     private int leftBorder = (int) (0.2 * Game.game_width);
@@ -29,6 +32,7 @@ public class Playing extends State implements Gamestatemethods {
     private int count = 101;
 
     private BufferedImage backgroundImg;
+    private boolean gameOver;
 
     public Playing(Game game) {
         super(game);
@@ -40,8 +44,9 @@ public class Playing extends State implements Gamestatemethods {
     private void initClasses() {
         levelHandler = new LevelHandler(game);
         enemyManager = new EnemyManager(this);
-        player = new Player(200, 200, (int) (64 * Game.scaling), (int) (40 * Game.scaling));
+        player = new Player(200, 200, (int) (64 * Game.scaling), (int) (40 * Game.scaling), this);
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
+        gameOverOverlay = new GameOverOverlay(this);
     }
 
 
@@ -55,17 +60,32 @@ public class Playing extends State implements Gamestatemethods {
 
     @Override
     public void update() {
+        if (!gameOver) {
+            levelHandler.update();
+            player.update();
+            enemyManager.update(levelHandler.getCurrentLevel().getLevelData(),player);
+            checkIfCloseToBorder();
+        }
 
-        levelHandler.update();
-        player.update();
-        enemyManager.update(levelHandler.getCurrentLevel().getLevelData(),player);
-        checkIfCloseToBorder();
 
     }
 
     public void resetAll() {
+        gameOver = false;
+        player.resetAll();
+        enemyManager.resetAllEnemies();
 
     }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+
+    }
+
+    public void checkEnemyHit(Rectangle2D.Float attackBox) {
+        enemyManager.checkEnemyHit(attackBox);
+    }
+
     private void checkIfCloseToBorder() {
         int playerX = (int) player.getImagebox().x;
         int difference = playerX - xLevelOffset;
@@ -90,15 +110,20 @@ public class Playing extends State implements Gamestatemethods {
         enemyManager.draw(g, xLevelOffset);
         showTimer(g);
 
+        if (gameOver) {
+            gameOverOverlay.draw(g);
+        }
+
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-             player.setAttacking(true);
+        if (!gameOver)
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                 player.setAttacking(true);
 
-        }
+            }
 
 
     }
@@ -120,53 +145,60 @@ public class Playing extends State implements Gamestatemethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
+        if (gameOver)
+            gameOverOverlay.keyPressed(e);
+        else
+            switch (e.getKeyCode()) {
 
-            case KeyEvent.VK_A:
-                player.setLeft(true);
-                break;
-            case KeyEvent.VK_D:
-                player.setRight(true);
-                break;
-            case KeyEvent.VK_SPACE:
-                player.setJump(true);
-                break;
+                case KeyEvent.VK_A:
+                    player.setLeft(true);
+                    break;
+                case KeyEvent.VK_D:
+                    player.setRight(true);
+                    break;
+                case KeyEvent.VK_SPACE:
+                    player.setJump(true);
+                    break;
 
-        }
+            }
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_A:
-                player.setLeft(false);
-                break;
-            case KeyEvent.VK_D:
-                player.setRight(false);
-                break;
-            case KeyEvent.VK_SPACE:
-                player.setJump(false);
-                break;
-        }
+        if (!gameOver)
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_A:
+                    player.setLeft(false);
+                    break;
+                case KeyEvent.VK_D:
+                    player.setRight(false);
+                    break;
+                case KeyEvent.VK_SPACE:
+                    player.setJump(false);
+                    break;
+            }
 
     }
 
     public void showTimer(Graphics g) {
+        if (!gameOver) {
+            long currentTime = new Date().getTime() / 1000;
 
-        long currentTime = new Date().getTime() / 1000;
-
-        if (currentTime - lastTime >= 1) {
-            count--;
-            this.lastTime = new Date().getTime() / 1000;
-        }
+            if (currentTime - lastTime >= 1) {
+                count--;
+                this.lastTime = new Date().getTime() / 1000;
+            }
 
             g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
             g.drawString(String.valueOf(count), 1150, 50);
 
-        if (count==0){
-            System.exit(0);
+            if (count==0){
+                System.exit(0);
+            }
         }
+
+
 
     }
 

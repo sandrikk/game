@@ -65,4 +65,9 @@ public class EnemyManager {
                     return;
                 }
     }
+
+    public void resetAllEnemies() {
+        for (Puma p : pumas)
+            p.resetEnemy();
+    }
 }

@@ -2,10 +2,14 @@ package entities;
 
 import main.Game;
 
+import java.awt.geom.Rectangle2D;
+
 import static utilz.Constants.EnemyConstants.*;
+import static utilz.Constants.GetEnemyDmg;
 import static utilz.Constants.GetMaxHealth;
 import static utilz.HelpMethods.*;
 import static utilz.Constants.Directions.*;
+import static entities.Puma.*;
 
 
 public abstract class Enemy extends Entity {
@@ -22,6 +26,7 @@ public abstract class Enemy extends Entity {
     protected int maxHealth;
     protected int currentHealth;
     protected boolean active = true;
+    protected boolean attackChecked;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -70,6 +75,13 @@ public abstract class Enemy extends Entity {
             newState(DEAD);
         else
             newState(HIT);
+    }
+
+    protected void checkEnemyHit(Rectangle2D.Float attackBox, Player player) {
+        if (attackBox.intersects(player.imagebox)) {
+            player.changeHealth(-GetEnemyDmg(enemyType));
+        }
+        attackChecked = true;
     }
 
 
@@ -172,6 +184,16 @@ public abstract class Enemy extends Entity {
         else
             walkDir = LEFT;
 
+    }
+
+    public void resetEnemy() {
+        imagebox.x = x;
+        imagebox.y = y;
+        firstUpdate = true;
+        currentHealth = maxHealth;
+        newState(IDLE);
+        active = true;
+        fallSpeed = 0;
     }
 
     public int getAniIndex() {

@@ -49,7 +49,7 @@ public class Player extends Entity {
     private int healthBarYStart = (int) (14 * Game.scaling);
 
     private int maxHealth = 100;
-    private int currentHealth = 40;
+    private int currentHealth = maxHealth;
     private int healthWidth = healthBarWidth;
 
     // AttackBox
@@ -61,8 +61,9 @@ public class Player extends Entity {
     private boolean attackChecked;
     private Playing playing;
 
-    public Player(float x, float y, int width, int height) {
+    public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
+        this.playing = playing;
         loadAnimations();
         initImagebox(x,y,20*Game.scaling,30*Game.scaling);
         initAttackBox();
@@ -75,18 +76,28 @@ public class Player extends Entity {
 
     public void update() {
         updateHealthBar();
-        /*
+
         if (currentHealth <= 0) {
             playing.setGameOver(true);
             return;
         }
-        
-         */
+
         updateAttackBox();
         updatePos();
+        if (attacking) {
+            checkAttack();
+        }
         updateAnimationTick();
         setAnimation();
 
+    }
+
+    private void checkAttack() {
+        if (attackChecked || aniIndex != 1) {
+            return;
+        }
+        attackChecked = true;
+        playing.checkEnemyHit(attackBox);
     }
 
     private void updateAttackBox() {
@@ -144,14 +155,6 @@ public class Player extends Entity {
 
     }
     public void setAnimation() {
-
-       /* if (moving) {
-            playerAction = RUNNING;
-        } else {
-            playerAction = IDLE;
-        }
-
-         */
 
         int startAni = playerAction;
 
@@ -295,6 +298,21 @@ public class Player extends Entity {
         left=false;
         down=false;
         up=false;
+    }
+
+    public void resetAll() {
+        resetDirectionsBooleans();
+        inAir = false;
+        attacking = false;
+        moving = false;
+        playerAction = IDLE;
+        currentHealth = maxHealth;
+
+        imagebox.x = x;
+        imagebox.y = y;
+
+        if (!IsEntityOnFloor(imagebox, levelData))
+            inAir = true;
     }
 
     public boolean isLeft() {
