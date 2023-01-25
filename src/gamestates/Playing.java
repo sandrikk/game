@@ -7,11 +7,14 @@ import main.Game;
 import ui.GameOverOverlay;
 import utilz.LoadPlayerSave;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 public class Playing extends State implements Gamestatemethods {
@@ -19,6 +22,10 @@ public class Playing extends State implements Gamestatemethods {
     private LevelHandler levelHandler;
     private EnemyManager enemyManager;
     private GameOverOverlay gameOverOverlay;
+    private int healthBarWidth = (int) (150 * Game.scaling);
+    private int maxHealth = 100;
+    private int currentHealth = maxHealth;
+    private int healthWidth = healthBarWidth;
 
     private int xLevelOffset;
     private int leftBorder = (int) (0.2 * Game.game_width);
@@ -26,6 +33,7 @@ public class Playing extends State implements Gamestatemethods {
     private int levelWideTiles = LoadPlayerSave.GetLevelInfo()[0].length;
     private int maximumTilesOffset = levelWideTiles - Game.tiles_in_width;
     private int maximumLevelOffsetX = maximumTilesOffset * Game.tiles_size;
+
 
 
     private long lastTime = new Date().getTime() / 1000;
@@ -65,6 +73,13 @@ public class Playing extends State implements Gamestatemethods {
             player.update();
             enemyManager.update(levelHandler.getCurrentLevel().getLevelData(),player);
             checkIfCloseToBorder();
+            if (player.getImagebox().y>=540){
+                currentHealth = 0;
+            }
+            if (currentHealth == 0){
+                gameOver = true;
+                currentHealth = 100;
+            }
         }
 
 
@@ -106,12 +121,16 @@ public class Playing extends State implements Gamestatemethods {
     public void draw(Graphics g) {
         levelHandler.drawBackground(g,xLevelOffset);
         levelHandler.draw(g, xLevelOffset);
+
         player.render(g, xLevelOffset);
         enemyManager.draw(g, xLevelOffset);
         showTimer(g);
 
         if (gameOver) {
             gameOverOverlay.draw(g);
+            currentHealth = 100;
+            count = 101;
+
         }
 
 
@@ -201,6 +220,14 @@ public class Playing extends State implements Gamestatemethods {
 
 
     }
+public void checkWherePlayerIs(){
+    int playerX = (int) player.getImagebox().x;
+    int playerY = (int) player.getImagebox().y;
+    System.out.println(playerX);
+    System.out.println(playerY);
+
+
+}
 
 
 }

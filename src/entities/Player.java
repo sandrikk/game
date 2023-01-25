@@ -3,6 +3,9 @@ package entities;
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadPlayerSave;
+import entities.EnemyManager;
+import entities.Player;
+
 
 import java.awt.Graphics;
 import javax.imageio.ImageIO;
@@ -19,6 +22,7 @@ import static utilz.HelpMethods.*;
 
 public class Player extends Entity {
     private BufferedImage[][] animations; //Deals with switching images for animations.
+    private Player player;
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
     private boolean moving, attacking = false;
@@ -76,7 +80,6 @@ public class Player extends Entity {
 
     public void update() {
         updateHealthBar();
-
         if (currentHealth <= 0) {
             playing.setGameOver(true);
             return;
