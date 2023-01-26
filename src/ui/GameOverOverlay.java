@@ -3,24 +3,29 @@ package ui;
 import gamestates.Gamestate;
 import gamestates.Playing;
 import main.Game;
+import utilz.LoadPlayerSave;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 public class GameOverOverlay {
     private Playing playing;
+    public static final String GameOver = "GameOver.png";
+    private BufferedImage BufferedGameOver;
 
     public GameOverOverlay(Playing playing) {
+
         this.playing = playing;
+        BufferedGameOver = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.GameOver);
     }
 
     public void draw(Graphics g) {
         g.setColor(new Color(0, 0, 0, 200));
         g.fillRect(0, 0, Game.game_width, Game.game_height);
+        g.drawImage(BufferedGameOver,0,0,Color.BLACK,null);
 
-        g.setColor(Color.white);
-        g.drawString("Game Over", Game.game_width / 2, 150);
-        g.drawString("Press esc to enter Main Menu!", Game.game_width / 2, 300);
+
 
     }
 

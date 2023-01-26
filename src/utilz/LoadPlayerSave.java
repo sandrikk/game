@@ -16,7 +16,7 @@ public class LoadPlayerSave {
 
     public static String Player_Atlas = "sandra_char_sprites.png";
     public static final String Background_Atlas = "backgroundJungle.png";
-
+    public static final String GameOver = "GameOver.png";
     public static final String Level_Atlas = "sand_tiles.png";
     //public static final String Level_One_Data = "level_one_data.png";
     public static final String Level_One_Data = "level_longer3.png";
