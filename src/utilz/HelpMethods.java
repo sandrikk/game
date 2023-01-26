@@ -79,7 +79,10 @@ public class HelpMethods {
         return true;
     }
     public static boolean IsFloor(Rectangle2D.Float imagebox, float xSpeed, int[][] levelData ) {
-        return IsSolid(imagebox.x + xSpeed, imagebox.y + imagebox.height + 1, levelData);
+        if (xSpeed > 0)
+            return IsSolid(imagebox.x + imagebox.width, imagebox.y + imagebox.height + 1, levelData);
+        else
+            return IsSolid(imagebox.x + xSpeed, imagebox.y + imagebox.height + 1, levelData);
     }
 
     public static boolean AreAllTilesWalkable (int xStart, int xEnd, int y, int[][] lvlData) {

@@ -20,8 +20,8 @@ public class Puma extends Enemy {
     }
 
     private void initAttackBox() {
-        attackBox = new Rectangle2D.Float(x, y, (int) (82 * Game.scaling), (int) (19 * Game.scaling));
-        attackBoxOffsetX = (int) (Game.scaling * 30);
+        attackBox = new Rectangle2D.Float(x, y, (int) (52 * Game.scaling), (int) (19 * Game.scaling));
+        attackBoxOffsetX = (int) (Game.scaling * 15);
     }
 
     public void update(int[][] lvlData, Player player) {

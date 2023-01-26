@@ -114,6 +114,7 @@ public class Player extends Entity {
         attackBox.y = imagebox.y + (Game.scaling * 10);
     }
 
+
     private void updateHealthBar() {
         healthWidth = (int) ((currentHealth / (float) maxHealth) * healthBarWidth);
     }

@@ -73,11 +73,12 @@ public class CharacterButton {
             rowIndex = 2;
         }
 
-
         if (mousePressed) {
             if (index == 0) {
             } else if (index == 1) {
+
             } else if (index == 2) {
+
             } else {
             }
         }
