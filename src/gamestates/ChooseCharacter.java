@@ -38,7 +38,6 @@ public class ChooseCharacter extends State implements Gamestatemethods {
         for (CharacterButton chb: buttons) {
             chb.update();
         }
-
     }
 
     @Override
@@ -48,8 +47,6 @@ public class ChooseCharacter extends State implements Gamestatemethods {
         for (CharacterButton chb: buttons) {
             chb.draw(g);
         }
-
-
     }
 
     @Override
