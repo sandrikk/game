@@ -1,5 +1,6 @@
 package gamestates;
 
+import entities.Player;
 import main.Game;
 import ui.MenuButton;
 import utilz.LoadPlayerSave;

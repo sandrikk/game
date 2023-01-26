@@ -69,7 +69,6 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
         this.playing = playing;
-        loadAnimations();
         initImagebox(x,y,20*Game.scaling,30*Game.scaling);
         initAttackBox();
     }
@@ -120,8 +119,6 @@ public class Player extends Entity {
 
     public void render(Graphics g, int xLevelOffset) {
         g.drawImage(animations[playerAction][aniIndex], (int)(imagebox.x - xDrawOffset) - xLevelOffset + flipX,(int)(imagebox.y - yDrawOffset),width * flipW,height,null);
-        //drawImagebox(g, xLevelOffset);
-        //drawAttackBox(g, xLevelOffset);
         drawUI(g);
     }
 
@@ -282,11 +279,11 @@ public class Player extends Entity {
         for (int j = 0; j < animations.length; j++)
             for (int i = 0; i < animations[j].length; i++)
                 animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
-        statusBarImg = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Status_Bar);
     }
 
     public void loadLevelData(int[][] levelData) {
         this.levelData = levelData;
+        statusBarImg = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Status_Bar);
         if (!IsEntityOnFloor(imagebox, levelData)) {
             inAir = true;
         }
