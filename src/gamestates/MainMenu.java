@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import static utilz.LoadPlayerSave.Player_Atlas;
+
 public class MainMenu extends State implements Gamestatemethods {
     private MenuButton[] buttons = new MenuButton[3];
     private BufferedImage menu_background;
@@ -101,6 +103,19 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_Q:
+                
+                break;
+            case KeyEvent.VK_D:
+
+                break;
+            case KeyEvent.VK_SPACE:
+
+                break;
+
+        }
 
     }
 
@@ -108,4 +123,8 @@ public class MainMenu extends State implements Gamestatemethods {
     public void keyReleased(KeyEvent e) {
 
     }
+
+
+
+
 }

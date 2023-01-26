@@ -14,7 +14,7 @@ import static utilz.Constants.EnemyConstants.PUMA;
 
 public class LoadPlayerSave {
 
-    public static final String Player_Atlas = "sandra_char_sprites.png";
+    public static String Player_Atlas = "sandra_char_sprites.png";
     public static final String Background_Atlas = "backgroundJungle.png";
 
     public static final String Level_Atlas = "sand_tiles.png";
@@ -24,6 +24,8 @@ public class LoadPlayerSave {
     public static final String Menu_Background = "background_menu.jpg";
     public static final String Puma_Sprite = "puma_sprite.png";
     public static final String Status_Bar = "health_power_bar.png";
+
+
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;

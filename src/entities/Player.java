@@ -47,9 +47,9 @@ public class Player extends Entity {
     private int statusBarX = (int) (10 * Game.scaling);
     private int statusBarY = (int) (10 * Game.scaling);
 
-    private int healthBarWidth = (int) (150 * Game.scaling);
+    private int healthBarWidth = (int) (150 * Game.scaling - 33);
     private int healthBarHeight = (int) (4 * Game.scaling);
-    private int healthBarXStart = (int) (34 * Game.scaling);
+    private int healthBarXStart = (int) (34 * Game.scaling +63);
     private int healthBarYStart = (int) (14 * Game.scaling);
 
     private int maxHealth = 100;
@@ -138,7 +138,7 @@ public class Player extends Entity {
     }
 
     private void drawUI(Graphics g) {
-        g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
+        g.drawImage(statusBarImg, 50, 18, 300, 100 , null);
         g.setColor(Color.red);
         g.fillRect(healthBarXStart + statusBarX, healthBarYStart + statusBarY, healthWidth, healthBarHeight);
     }
@@ -275,7 +275,7 @@ public class Player extends Entity {
 
 
     private void loadAnimations() {
-        InputStream istream = getClass().getResourceAsStream("/characters8.png");
+        
 
         BufferedImage img = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Player_Atlas);
 
