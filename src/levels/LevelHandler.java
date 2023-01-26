@@ -13,6 +13,7 @@ public class LevelHandler {
     private Game game;
     private BufferedImage[] levelSprite;
     private BufferedImage backgroundSprite;
+    private BufferedImage BufferedGameOver;
 
     private Level levelOne;
     public LevelHandler(Game game) {
