@@ -11,8 +11,9 @@ import java.awt.image.BufferedImage;
 
 public class GameOverOverlay {
     private Playing playing;
-    public static final String GameOver = "GameOver.png";
     private BufferedImage BufferedGameOver;
+    public static final String GameOver = "GameOver.png";
+
 
     public GameOverOverlay(Playing playing) {
 
@@ -23,6 +24,7 @@ public class GameOverOverlay {
     public void draw(Graphics g) {
         g.setColor(new Color(0, 0, 0, 200));
         g.fillRect(0, 0, Game.game_width, Game.game_height);
+
         g.drawImage(BufferedGameOver,0,0,Color.BLACK,null);
 
 
