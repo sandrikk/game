@@ -14,7 +14,8 @@ import static utilz.Constants.EnemyConstants.PUMA;
 
 public class LoadPlayerSave {
 
-    public static String Player_Atlas = "sandra_char_sprites.png";
+    public static String Player_Atlas1 = "miguel_sprite.png";
+    public static String Player_Atlas2 = "sandra_char_sprites.png";
     public static final String Background_Atlas = "backgroundJungle.png";
 
     public static final String Level_Atlas = "sand_tiles.png";

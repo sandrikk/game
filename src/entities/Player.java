@@ -1,10 +1,11 @@
 package entities;
 
+import gamestates.ChooseCharacter;
 import gamestates.Playing;
 import main.Game;
+import ui.CharacterButton;
 import utilz.LoadPlayerSave;
-import entities.EnemyManager;
-import entities.Player;
+
 
 
 import java.awt.Graphics;
@@ -12,16 +13,13 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static utilz.Constants.Directions.*;
-import static utilz.Constants.Directions.DOWN;
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.*;
+import ui.CharacterButton.*;
+
 
 public class Player extends Entity {
-    private BufferedImage[][] animations; //Deals with switching images for animations.
+    private static BufferedImage[][] animations; //Deals with switching images for animations.
     private Player player;
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
@@ -31,6 +29,7 @@ public class Player extends Entity {
     private int[][] levelData;
     private float xDrawOffset = 21 * Game.scaling;
     private float yDrawOffset = 4 * Game.scaling;
+    private int index;
 
     // Jumping + gravity
     private float airSpeed = 0f;
@@ -40,7 +39,7 @@ public class Player extends Entity {
     private boolean inAir = false;
 
     // StatusBarUI
-    private BufferedImage statusBarImg;
+    private static BufferedImage statusBarImg;
 
     private int statusBarWidth = (int) (192 * Game.scaling);
     private int statusBarHeight = (int) (58 * Game.scaling);
@@ -64,6 +63,8 @@ public class Player extends Entity {
 
     private boolean attackChecked;
     private Playing playing;
+    //private static Character character = Character.character;
+
 
     public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
@@ -72,6 +73,7 @@ public class Player extends Entity {
         initImagebox(x,y,20*Game.scaling,30*Game.scaling);
         initAttackBox();
     }
+
 
     private void initAttackBox() {
         attackBox = new Rectangle2D.Float(x, y, (int) (20 * Game.scaling), (int) (20 * Game.scaling));
@@ -274,16 +276,12 @@ public class Player extends Entity {
     }
 
 
-    private void loadAnimations() {
-        
-
-        BufferedImage img = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Player_Atlas);
-
+    public static void loadAnimations() {
+        BufferedImage img = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Player_Atlas1);
         animations = new BufferedImage[7][8];
         for (int j = 0; j < animations.length; j++)
             for (int i = 0; i < animations[j].length; i++)
                 animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
-
         statusBarImg = LoadPlayerSave.GetSpriteAtlas(LoadPlayerSave.Status_Bar);
     }
 
@@ -335,12 +333,6 @@ public class Player extends Entity {
     }
     public void setRight(boolean right) {
         this.right=right;
-    }
-    public boolean isDown() {
-        return down;
-    }
-    public void setDown(boolean down) {
-        this.down = down;
     }
 
     public void setJump(boolean jump) {

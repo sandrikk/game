@@ -42,8 +42,9 @@ public class Game implements Runnable{
 
     private void initClasses() {
         menu = new MainMenu(this);
-        playing = new Playing(this);
         choosecharacter = new ChooseCharacter(this);
+        playing = new Playing(this);
+
 
     }
 

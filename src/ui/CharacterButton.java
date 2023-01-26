@@ -1,5 +1,6 @@
 package ui;
 
+import entities.Player;
 import gamestates.Gamestate;
 import utilz.LoadPlayerSave;
 
@@ -11,11 +12,13 @@ import static utilz.Constants.UI.ButtonsCharacter.*;
 public class CharacterButton {
     private int xPos, yPos, index, rowIndex;
     private Gamestate state;
+    private Character character;
     private BufferedImage[] images;
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
 
-    public CharacterButton(int xPos, int yPos, int index /* row */, Gamestate state) {
+
+    public CharacterButton(int xPos, int yPos, int index /* row */,  Gamestate state) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.state = state;
@@ -69,7 +72,18 @@ public class CharacterButton {
         if (mousePressed) {
             rowIndex = 2;
         }
+
+
+        if (mousePressed) {
+            if (index == 0) {
+            } else if (index == 1) {
+            } else if (index == 2) {
+            } else {
+            }
+        }
+
     }
+
 
     public void applyGameState() {
         Gamestate.state = state;

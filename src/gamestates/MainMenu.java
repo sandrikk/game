@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static utilz.LoadPlayerSave.Player_Atlas;
+import static utilz.LoadPlayerSave.Player_Atlas1;
 
 public class MainMenu extends State implements Gamestatemethods {
     private MenuButton[] buttons = new MenuButton[3];
