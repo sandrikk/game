@@ -1,7 +1,8 @@
+
 package gamestates;
 
 import main.Game;
-import ui.MenuButton;
+import ui.CharacterButton;
 import utilz.LoadPlayerSave;
 
 import java.awt.*;
@@ -11,11 +12,12 @@ import java.awt.image.BufferedImage;
 
 import static utilz.LoadPlayerSave.Player_Atlas;
 
-public class MainMenu extends State implements Gamestatemethods {
-    private MenuButton[] buttons = new MenuButton[3];
+public class ChooseCharacter extends State implements Gamestatemethods {
+
+    private CharacterButton[] buttons = new CharacterButton[3];
     private BufferedImage menu_background;
 
-    public MainMenu(Game game) {
+    public ChooseCharacter(Game game) {
 
         super(game);
         loadButtons();
@@ -27,15 +29,15 @@ public class MainMenu extends State implements Gamestatemethods {
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.game_width / 2, (int) (150 * Game.scaling), 0, Gamestate.PLAYING);
-        buttons[1] = new MenuButton(Game.game_width / 2, (int) (220 * Game.scaling), 1, Gamestate.CHOOSECHARACTER);
-        buttons[2] = new MenuButton(Game.game_width / 2, (int) (290 * Game.scaling), 2, Gamestate.QUIT);
+        buttons[0] = new CharacterButton(0, (int) (100 * Game.scaling), 0, Gamestate.PLAYING);
+        buttons[1] = new CharacterButton(250, (int) (100 * Game.scaling), 1, Gamestate.CHOOSECHARACTER);
+        buttons[2] = new CharacterButton(500, (int) (100 * Game.scaling), 2, Gamestate.QUIT);
     }
 
     @Override
     public void update() {
-        for (MenuButton mb: buttons) {
-            mb.update();
+        for (CharacterButton chb: buttons) {
+            chb.update();
         }
 
     }
@@ -44,8 +46,8 @@ public class MainMenu extends State implements Gamestatemethods {
     public void draw(Graphics g) {
         g.drawImage(menu_background,0,0,null);
 
-        for (MenuButton mb: buttons) {
-            mb.draw(g);
+        for (CharacterButton chb: buttons) {
+            chb.draw(g);
         }
 
 
@@ -58,9 +60,9 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for (MenuButton mb: buttons) {
-            if (isIn(e,mb)) {
-                mb.setMousePressed(true);
+        for (CharacterButton chb: buttons) {
+            if (isInCh(e,chb)) {
+                chb.setMousePressed(true);
                 break;
             }
         }
@@ -68,10 +70,10 @@ public class MainMenu extends State implements Gamestatemethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (MenuButton mb: buttons) {
-            if (isIn(e,mb)) {
-                if (mb.isMousePressed()) {
-                    mb.applyGameState();
+        for (CharacterButton chb: buttons) {
+            if (isInCh(e,chb)) {
+                if (chb.isMousePressed()) {
+                    chb.applyGameState();
                 }
                 break;
             }
@@ -81,20 +83,20 @@ public class MainMenu extends State implements Gamestatemethods {
     }
 
     private void resetButtons() {
-        for (MenuButton mb: buttons) {
-            mb.resetBools();
+        for (CharacterButton chb: buttons) {
+            chb.resetBools();
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for (MenuButton mb: buttons) {
-            mb.setMouseOver(false);
+        for (CharacterButton chb: buttons) {
+            chb.setMouseOver(false);
         }
 
-        for (MenuButton mb: buttons) {
-            if (isIn(e, mb)) {
-                mb.setMouseOver(true);
+        for (CharacterButton chb: buttons) {
+            if (isInCh(e, chb)) {
+                chb.setMouseOver(true);
                 break;
             }
         }
@@ -106,7 +108,7 @@ public class MainMenu extends State implements Gamestatemethods {
         switch (e.getKeyCode()) {
 
             case KeyEvent.VK_Q:
-                
+
                 break;
             case KeyEvent.VK_D:
 
@@ -128,3 +130,4 @@ public class MainMenu extends State implements Gamestatemethods {
 
 
 }
+

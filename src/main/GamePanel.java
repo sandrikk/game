@@ -76,16 +76,6 @@ private Game game;
 
     }
 
-    public void changeXDelta(int value) {
-        this.xDelta += value;
-
-    }
-
-    public void changeYDelta(int value) {
-        this.yDelta += value;
-
-    }
-
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -95,11 +85,6 @@ private Game game;
                 aniIndex = 0;
             }
         }
-
-    }
-
-    public void updateGame() {
-
 
     }
 

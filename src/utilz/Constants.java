@@ -69,6 +69,13 @@ public class Constants {
             public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.scaling);
             public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.scaling);
         }
+
+        public static class ButtonsCharacter {
+            public static final int B_WIDTH_DEFAULT = 80;
+            public static final int B_HEIGHT_DEFAULT = 80;
+            public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.scaling);
+            public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.scaling);
+        }
     }
     public static class Directions{
         public static final int LEFT = 0;

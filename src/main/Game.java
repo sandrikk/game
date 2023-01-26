@@ -1,6 +1,7 @@
 package main;
 
 import entities.Player;
+import gamestates.ChooseCharacter;
 import gamestates.Gamestate;
 import gamestates.MainMenu;
 import gamestates.Playing;
@@ -20,6 +21,7 @@ public class Game implements Runnable{
 
     private Playing playing;
     private MainMenu menu;
+    private ChooseCharacter choosecharacter;
 
     public final static int default_size_tiles = 32;
     public final static float scaling = 1.5f;
@@ -41,6 +43,7 @@ public class Game implements Runnable{
     private void initClasses() {
         menu = new MainMenu(this);
         playing = new Playing(this);
+        choosecharacter = new ChooseCharacter(this);
 
     }
 
@@ -58,11 +61,10 @@ public class Game implements Runnable{
             case PLAYING:
                 playing.update();
                 break;
-            case OPTIONS:
+            case CHOOSECHARACTER:
+                choosecharacter.update();
                 break;
             case QUIT:
-                System.exit(0);
-                break;
             default:
                 System.exit(0);
                 break;
@@ -83,6 +85,10 @@ public class Game implements Runnable{
                 //levelHandler.drawBackground(g);
                 //levelHandler.draw(g);
                 //player.render(g);
+                break;
+            case CHOOSECHARACTER:
+                choosecharacter.draw(g);
+
                 break;
             default:
                 break;
@@ -145,6 +151,11 @@ public class Game implements Runnable{
     public MainMenu getMenu(){
         return menu;
     }
+
+    public ChooseCharacter getCharacter(){
+        return choosecharacter;
+    }
+
     public Playing getPlaying(){
         return playing;
     }
