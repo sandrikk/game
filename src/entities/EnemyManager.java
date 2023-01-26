@@ -22,7 +22,7 @@ public class EnemyManager {
 
     private void addEnemies() {
         pumas = LoadPlayerSave.getPumas();
-        System.out.println(pumas.size());
+        //System.out.println(pumas.size());
     }
 
     public void update(int[][] lvlData,Player player) {

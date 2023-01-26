@@ -50,11 +50,13 @@ public class Playing extends State implements Gamestatemethods {
 
 
     private void initClasses() {
+
         levelHandler = new LevelHandler(game);
         enemyManager = new EnemyManager(this);
         player = new Player(200, 200, (int) (64 * Game.scaling), (int) (40 * Game.scaling), this);
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
         gameOverOverlay = new GameOverOverlay(this);
+
     }
 
 
@@ -63,6 +65,7 @@ public class Playing extends State implements Gamestatemethods {
     }
 
     public Player getPlayer() {
+
         return player;
     }
 
@@ -70,7 +73,9 @@ public class Playing extends State implements Gamestatemethods {
     public void update() {
         if (!gameOver) {
             levelHandler.update();
+
             player.update();
+
             enemyManager.update(levelHandler.getCurrentLevel().getLevelData(),player);
             checkIfCloseToBorder();
             if (player.getImagebox().y>=540){
@@ -121,7 +126,7 @@ public class Playing extends State implements Gamestatemethods {
     public void draw(Graphics g) {
         levelHandler.drawBackground(g,xLevelOffset);
         levelHandler.draw(g, xLevelOffset);
-
+        Player.loadAnimations();
         player.render(g, xLevelOffset);
         enemyManager.draw(g, xLevelOffset);
         showTimer(g);
