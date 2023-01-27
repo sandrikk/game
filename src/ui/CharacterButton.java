@@ -73,12 +73,13 @@ public class CharacterButton {
             rowIndex = 2;
         }
 
-
         if (mousePressed) {
             if (index == 0) {
                 LoadPlayerSave.Player_Atlas1 = "sandra_char_sprites.png";
             } else if (index == 1) {
+
             } else if (index == 2) {
+
             } else {
             }
         }

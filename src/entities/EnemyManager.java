@@ -39,9 +39,9 @@ public class EnemyManager {
     private void drawPumas(Graphics g, int xLevelOffset) {
         for (Puma p: pumas) {
             if (p.isActive()) {
-                g.drawImage(pumaArr[p.getEnemyState()][p.getAniIndex()], (int) p.getImagebox().x - xLevelOffset + p.flipX(), (int) p.getImagebox().y, PUMA_WIDTH * p.flipW(), PUMA_HEIGHT, null);
+                g.drawImage(pumaArr[p.getEnemyState()][p.getAniIndex()], (int) p.getImagebox().x - xLevelOffset - PUMA_DRAWOFFSET_X + p.flipX(), (int) p.getImagebox().y - PUMA_DRAWOFFSET_Y, PUMA_WIDTH * p.flipW(), PUMA_HEIGHT, null);
                 p.drawImagebox(g, xLevelOffset);
-                p.drawAttackBox(g, xLevelOffset);
+                //p.drawAttackBox(g, xLevelOffset);
             }
 
         }
