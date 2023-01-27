@@ -68,8 +68,8 @@ public class Puma extends Enemy {
 
 
     public void drawAttackBox(Graphics g, int xLvlOffset) {
-        g.setColor(Color.red);
-        g.drawRect((int) (attackBox.x - xLvlOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
+        //g.setColor(Color.red);
+       // g.drawRect((int) (attackBox.x - xLvlOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
     }
 
     public int flipX() {
