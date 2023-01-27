@@ -12,7 +12,7 @@ import static utilz.Constants.UI.ButtonsCharacter.*;
 public class CharacterButton {
     private int xPos, yPos, index, rowIndex;
     private Gamestate state;
-    private Character character;
+
     private BufferedImage[] images;
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
@@ -75,10 +75,12 @@ public class CharacterButton {
 
         if (mousePressed) {
             if (index == 0) {
-                LoadPlayerSave.Player_Atlas1 = "sandra_char_sprites.png";
+                LoadPlayerSave.Player_Atlas1 = "player_sprites.png";
+
             } else if (index == 1) {
-                
+                LoadPlayerSave.Player_Atlas1 = "sandra_char_sprites.png";
             } else if (index == 2) {
+                LoadPlayerSave.Player_Atlas1 = "miguel_sprite.png";
 
             } else {
             }

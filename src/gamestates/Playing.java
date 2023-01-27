@@ -53,6 +53,7 @@ public class Playing extends State implements Gamestatemethods {
 
         levelHandler = new LevelHandler(game);
         enemyManager = new EnemyManager(this);
+        Player.loadAnimations();
         player = new Player(200, 200, (int) (64 * Game.scaling), (int) (40 * Game.scaling), this);
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
         gameOverOverlay = new GameOverOverlay(this);

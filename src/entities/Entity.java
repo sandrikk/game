@@ -22,7 +22,7 @@ public abstract class Entity {
         g.setColor(Color.red);
 
         // red rectangle
-        g.drawRect((int)imagebox.x - xLvlOffset, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
+        //g.drawRect((int)imagebox.x - xLvlOffset, (int)imagebox.y, (int)imagebox.width, (int)imagebox.height);
     }
 
     protected void initImagebox(float x, float y, float width, float height) {
