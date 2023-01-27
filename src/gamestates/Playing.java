@@ -37,7 +37,7 @@ public class Playing extends State implements Gamestatemethods {
 
 
     private long lastTime = new Date().getTime() / 1000;
-    private int count = 101;
+    private int count = 71;
 
     private BufferedImage backgroundImg;
     private boolean gameOver;
@@ -135,7 +135,7 @@ public class Playing extends State implements Gamestatemethods {
         if (gameOver) {
             gameOverOverlay.draw(g);
             currentHealth = 100;
-            count = 101;
+            count = 71;
 
         }
 
