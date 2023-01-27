@@ -28,9 +28,9 @@ public class ChooseCharacter extends State implements Gamestatemethods {
     }
 
     private void loadButtons() {
-        buttons[0] = new CharacterButton(0, (int) (100 * Game.scaling), 0,  Gamestate.PLAYING);
-        buttons[1] = new CharacterButton(250, (int) (100 * Game.scaling), 1,  Gamestate.PLAYING);
-        buttons[2] = new CharacterButton(500, (int) (100 * Game.scaling), 2,  Gamestate.PLAYING);
+        buttons[0] = new CharacterButton(Game.game_width / 2 - 300, (int) (100 * Game.scaling), 0,  Gamestate.PLAYING);
+        buttons[1] = new CharacterButton(Game.game_width / 2 - 75, (int) (100 * Game.scaling), 1,  Gamestate.PLAYING);
+        buttons[2] = new CharacterButton(Game.game_width / 2 + 125, (int) (100 * Game.scaling), 2,  Gamestate.PLAYING);
     }
 
     @Override
